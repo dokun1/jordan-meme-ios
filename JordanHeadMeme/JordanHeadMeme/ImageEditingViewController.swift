@@ -132,7 +132,7 @@ class ImageEditingViewController: UIViewController {
     }
 
     func getFaceDetector() -> CIDetector {
-        return CIDetector.init(ofType: CIDetectorTypeFace, context: nil, options: [CIDetectorAccuracy: CIDetectorAccuracyLow])
+        return CIDetector.init(ofType: CIDetectorTypeFace, context: nil, options: [CIDetectorAccuracy: CIDetectorAccuracyHigh])
     }
     
 }
