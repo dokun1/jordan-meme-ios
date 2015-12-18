@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="JordanHeadMeme" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ml8-3m-mvC">
+                                <rect key="frame" x="20" y="127" width="560" height="39"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="39" id="6it-z2-JHw"/>
+                                </constraints>
+                                <state key="normal" title="Take Photo"/>
+                                <connections>
+                                    <action selector="takePhotoTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="pKu-gC-4Ok"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fUj-lR-yHs">
+                                <rect key="frame" x="20" y="440" width="560" height="39"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="39" id="UrJ-7W-RzQ"/>
+                                </constraints>
+                                <state key="normal" title="Choose Photo"/>
+                                <connections>
+                                    <action selector="choosePhotoTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="CNJ-Ug-wCv"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ml8-3m-mvC" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="107" id="1NI-QI-gMD"/>
+                            <constraint firstItem="ml8-3m-mvC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Eko-rr-mTy"/>
+                            <constraint firstItem="ml8-3m-mvC" firstAttribute="leading" secondItem="fUj-lR-yHs" secondAttribute="leading" id="VHX-FU-18V"/>
+                            <constraint firstItem="fUj-lR-yHs" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Yd7-C8-ZDx"/>
+                            <constraint firstItem="fUj-lR-yHs" firstAttribute="trailing" secondItem="ml8-3m-mvC" secondAttribute="trailing" id="cuW-5i-28b"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="fUj-lR-yHs" secondAttribute="bottom" constant="121" id="l2i-RG-uQv"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <segue destination="VU7-1M-a8V" kind="presentation" identifier="editImageSegue" id="CAe-95-ZsY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="600" y="490"/>
+        </scene>
+        <!--Image Editing View Controller-->
+        <scene sceneID="4KH-k8-Ej5">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2gx-kV-hPw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="VU7-1M-a8V" customClass="ImageEditingViewController" customModule="JordanHeadMeme" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VEN-fr-e7X"/>
+                        <viewControllerLayoutGuide type="bottom" id="hr5-qS-4lM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="iwV-5t-y5y">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fP5-7r-vZM">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="fP5-7r-vZM" firstAttribute="top" secondItem="iwV-5t-y5y" secondAttribute="top" id="6Ec-7R-Mgi"/>
+                            <constraint firstItem="fP5-7r-vZM" firstAttribute="leading" secondItem="iwV-5t-y5y" secondAttribute="leading" id="TOw-I1-nxI"/>
+                            <constraint firstItem="fP5-7r-vZM" firstAttribute="bottom" secondItem="hr5-qS-4lM" secondAttribute="top" id="ZQg-C7-byg"/>
+                            <constraint firstAttribute="trailing" secondItem="fP5-7r-vZM" secondAttribute="trailing" id="zdj-5g-xVq"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="fP5-7r-vZM" id="x9B-I5-zdi"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1493" y="490"/>
+        </scene>
+    </scenes>
+</document>
