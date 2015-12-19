@@ -1,5 +1,8 @@
 # Jordan Meme Generator
 
+[![Twitter](https://img.shields.io/badge/contact-@dokun24-blue.svg?style=flat)](https://twitter.com/dokun24)
+[![License](http://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/dokun1/firstRuleFireplace/blob/master/LICENSE)
+
 ## About
 This is an app that lets you take any photo, whether it's from your camera or your saved photos, detect any and all faces on the photo, and then superimpose a Crying Michael Jordan head on top of it. It is really funny.
 
