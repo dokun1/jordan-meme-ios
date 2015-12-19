@@ -14,7 +14,8 @@ This is what the still image looks like:
 * I have had this idea for a while and I haven't had time to really act on it.
 * I will probably run out of time very shortly so...
 * I am open sourcing it in the hope that people will contribute to making it something release-able.
-* 
+ 
+
 ## Todo List (Contributors, look here!)
 
 - [ ] use full resolution image on image view
@@ -29,6 +30,8 @@ This is what the still image looks like:
 - [ ] color scheme
 - [ ] UI instructions on editing screen
 - [ ] app icon
+- [ ] save to camera roll function
+- [ ] share to social media function
 
 ## Example
 
