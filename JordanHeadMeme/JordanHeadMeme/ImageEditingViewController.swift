@@ -111,16 +111,52 @@ class ImageEditingViewController: UIViewController {
     
     override func viewDidLoad() {
         imageView.image = uneditedImage.fixOrientation
+        uneditedImage = imageView.image
     }
     
     override func viewDidAppear(animated: Bool) {
         if let results = processImage() {
+            var jordanFaceRects = [CGRect]()
             for r in results {
-                let face:CIFaceFeature = r as! CIFaceFeature
-                print(face.bounds)
+                let face: CIFaceFeature = r as! CIFaceFeature
+                if face.hasLeftEyePosition && face.hasRightEyePosition && face.hasMouthPosition {
+                    jordanFaceRects.append(getRectForDrawingHead(face.leftEyePosition, rightEye: face.rightEyePosition, mouth: face.mouthPosition))
+                }
             }
         }
     }
+    
+    func getRectForDrawingHead(leftEye: CGPoint, rightEye: CGPoint, mouth: CGPoint) -> CGRect {
+        let imageWidthRatio = CGRectGetWidth(self.view.bounds) / uneditedImage.size.width
+        let imageHeightRatio = imageView.frame.size.height / uneditedImage.size.height
+        let newImage = drawOnImage(CGRectMake(leftEye.x, leftEye.y, (rightEye.x - leftEye.x), (mouth.y - leftEye.y)), image: uneditedImage)
+        return CGRectMake(leftEye.x, leftEye.y, (rightEye.x - leftEye.x), (mouth.y - leftEye.y))
+//        let face: CIFaceFeature = r as! CIFaceFeature
+//        let adjustedFace = CGRectMake(face.bounds.origin.x * imageWidthRatio, face.bounds.origin.y * imageHeightRatio, face.bounds.size.width * imageWidthRatio, face.bounds.size.height * imageHeightRatio)
+//        print(face.bounds)
+//        print(face.leftEyePosition)
+//        print(face.rightEyePosition)
+//        print(face.mouthPosition)
+//        let jordanHead = UIImageView.init(image: UIImage.init(named: "jordanHead"))
+//        jordanHead.frame = adjustedFace
+//        let center = CGPointMake(adjustedFace.origin.x + (adjustedFace.width / 2), adjustedFace.origin.y + (adjustedFace.height / 2))
+//        jordanHead.center = center
+//        //                imageView.addSubview(jordanHead)
+//        let newImage = drawOnImage(face.bounds, image: imageView.image!)
+    }
+    
+    func drawOnImage(rect: CGRect, image: UIImage) -> UIImage {
+        UIGraphicsBeginImageContext(image.size)
+        image.drawAtPoint(CGPointZero)
+        let context = UIGraphicsGetCurrentContext()
+        CGContextSetLineWidth(context, 3.0)
+        UIColor.blueColor().setStroke()
+        CGContextStrokeRect(context, rect)
+        let returnedImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext();
+        return returnedImage
+    }
+
     
     func processImage() -> NSArray? {
         if let image = uneditedImage {
@@ -134,5 +170,4 @@ class ImageEditingViewController: UIViewController {
     func getFaceDetector() -> CIDetector {
         return CIDetector.init(ofType: CIDetectorTypeFace, context: nil, options: [CIDetectorAccuracy: CIDetectorAccuracyHigh])
     }
-    
 }
