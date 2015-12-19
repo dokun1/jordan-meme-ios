@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import SVProgressHUD
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ImageEditingViewControllerDelegate {
     
     @IBAction func takePhotoTapped() {
         let picker = UIImagePickerController.init()
@@ -44,7 +45,20 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         if (segue.identifier == "editImageSegue") {
             let nextController:ImageEditingViewController = segue.destinationViewController as! ImageEditingViewController
             nextController.uneditedImage = sender as! UIImage
+            nextController.delegate = self
         }
+    }
+    
+    // MARK: ImageEditingViewControllerDelegate methods
+    
+    func controllerDidFinishWithImage(controller: ImageEditingViewController, image: UIImage) {
+        controller.dismissViewControllerAnimated(true) { () -> Void in
+            
+        }
+    }
+    
+    func controllerDidCancel(controller: ImageEditingViewController) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
     }
 }
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		501A5F571C25E32D0070ECD6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501A5F561C25E32D0070ECD6 /* Extensions.swift */; };
 		5031DEF31C24AA1E00473339 /* ImageEditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5031DEF21C24AA1E00473339 /* ImageEditingViewController.swift */; };
 		507C70061C24A4C900B8D890 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507C70051C24A4C900B8D890 /* AppDelegate.swift */; };
 		507C70081C24A4C900B8D890 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507C70071C24A4C900B8D890 /* ViewController.swift */; };
@@ -37,6 +38,7 @@
 
 /* Begin PBXFileReference section */
 		41EEAA9708D97A41BCCE00CD /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		501A5F561C25E32D0070ECD6 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		5031DEF21C24AA1E00473339 /* ImageEditingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageEditingViewController.swift; sourceTree = "<group>"; };
 		507C70021C24A4C900B8D890 /* JordanHeadMeme.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JordanHeadMeme.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		507C70051C24A4C900B8D890 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				507C70051C24A4C900B8D890 /* AppDelegate.swift */,
 				507C70071C24A4C900B8D890 /* ViewController.swift */,
 				5031DEF21C24AA1E00473339 /* ImageEditingViewController.swift */,
+				501A5F561C25E32D0070ECD6 /* Extensions.swift */,
 				507C70091C24A4C900B8D890 /* Main.storyboard */,
 				507C700C1C24A4C900B8D890 /* Assets.xcassets */,
 				507C700E1C24A4C900B8D890 /* LaunchScreen.storyboard */,
@@ -337,6 +340,7 @@
 				507C70081C24A4C900B8D890 /* ViewController.swift in Sources */,
 				507C70061C24A4C900B8D890 /* AppDelegate.swift in Sources */,
 				5031DEF31C24AA1E00473339 /* ImageEditingViewController.swift in Sources */,
+				501A5F571C25E32D0070ECD6 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

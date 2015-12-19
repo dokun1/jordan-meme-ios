@@ -60,7 +60,6 @@
         <!--Image Editing View Controller-->
         <scene sceneID="4KH-k8-Ej5">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2gx-kV-hPw" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="VU7-1M-a8V" customClass="ImageEditingViewController" customModule="JordanHeadMeme" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="VEN-fr-e7X"/>
@@ -70,22 +69,43 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fP5-7r-vZM">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HTn-rM-Hog">
+                                <rect key="frame" x="543" y="20" width="37" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="37" id="2Cm-mI-v4C"/>
+                                    <constraint firstAttribute="height" constant="30" id="F3I-Am-5Pa"/>
+                                </constraints>
+                                <state key="normal" title="Done">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="doneButtonClicked" destination="VU7-1M-a8V" eventType="touchUpInside" id="v1c-EC-p3Y"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sdt-dm-YQY">
+                                <rect key="frame" x="20" y="20" width="48" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="9Dr-GW-sO3"/>
+                                    <constraint firstAttribute="width" constant="48" id="Uar-Kz-3BO"/>
+                                </constraints>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelButtonClicked" destination="VU7-1M-a8V" eventType="touchUpInside" id="bRO-gZ-CTa"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="fP5-7r-vZM" firstAttribute="top" secondItem="iwV-5t-y5y" secondAttribute="top" id="6Ec-7R-Mgi"/>
-                            <constraint firstItem="fP5-7r-vZM" firstAttribute="leading" secondItem="iwV-5t-y5y" secondAttribute="leading" id="TOw-I1-nxI"/>
-                            <constraint firstItem="fP5-7r-vZM" firstAttribute="bottom" secondItem="hr5-qS-4lM" secondAttribute="top" id="ZQg-C7-byg"/>
-                            <constraint firstAttribute="trailing" secondItem="fP5-7r-vZM" secondAttribute="trailing" id="zdj-5g-xVq"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="HTn-rM-Hog" secondAttribute="trailing" id="03D-v4-PEt"/>
+                            <constraint firstItem="sdt-dm-YQY" firstAttribute="leading" secondItem="iwV-5t-y5y" secondAttribute="leadingMargin" id="3CF-EG-etb"/>
+                            <constraint firstItem="HTn-rM-Hog" firstAttribute="top" secondItem="VEN-fr-e7X" secondAttribute="bottom" id="mZL-Ln-tKJ"/>
+                            <constraint firstItem="sdt-dm-YQY" firstAttribute="top" secondItem="VEN-fr-e7X" secondAttribute="bottom" id="t2U-pX-m1M"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="imageView" destination="fP5-7r-vZM" id="x9B-I5-zdi"/>
-                    </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2gx-kV-hPw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1493" y="490"/>
         </scene>
