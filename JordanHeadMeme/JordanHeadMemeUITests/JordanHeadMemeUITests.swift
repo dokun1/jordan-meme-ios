@@ -30,6 +30,12 @@ class JordanHeadMemeUITests: XCTestCase {
     
     func testExample() {
         // Use recording to get started writing UI tests.
+        
+        let app = XCUIApplication()
+        app.buttons["Choose Photo"].tap()
+        app.tables.buttons["Camera Roll"].tap()
+        app.collectionViews.childrenMatchingType(.Cell).matchingIdentifier("Photo, Landscape, 8:53 PM").elementBoundByIndex(0).tap()
+        
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
     
