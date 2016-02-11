@@ -23,9 +23,9 @@ class ImageProcessor: NSObject {
         let results = getFaceDetector().featuresInImage(ciImage)
         var counter = 0
         var generatedHeads: [JordanHead] = [JordanHead]()
-        for r in results {
+        for result in results {
             counter++
-            let face: CIFaceFeature = r as! CIFaceFeature
+            let face: CIFaceFeature = result as! CIFaceFeature
             if face.hasLeftEyePosition && face.hasRightEyePosition && face.hasMouthPosition {
                 let jordanHead = drawJordanHead(getRectForDrawingHead(face, image: image), feature: face, tag: counter)
                 generatedHeads.append(jordanHead)

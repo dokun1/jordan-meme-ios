@@ -8,6 +8,7 @@
 
 import UIKit
 import QuartzCore
+import SVProgressHUD
 
 protocol ImageEditingViewControllerDelegate: class {
     func controllerDidFinishWithImage(controller: ImageEditingViewController, image: UIImage)
@@ -20,17 +21,19 @@ class ImageEditingViewController: UIViewController, UIGestureRecognizerDelegate 
     var imageView: UIImageView!
     weak var delegate: ImageEditingViewControllerDelegate?
     var headViews: [UIImageView] = [UIImageView]()
+    var generatedHeads: [JordanHead] = [JordanHead]()
     
     // MARK: override methods
     
     override func viewDidLoad() {
+        SVProgressHUD.showWithStatus("Applying heads...")
         correctedImage = uneditedImage.fixOrientation
         imageView = UIImageView.init(image: correctedImage)
         imageView.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))
+        imageView.frame = CGRectMake(0, 0, correctedImage.size.width, correctedImage.size.height)
         imageView.center = self.view.center
         imageView.userInteractionEnabled = true
         imageView.contentMode = .ScaleAspectFit
-        self.view.addSubview(imageView)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -46,7 +49,19 @@ class ImageEditingViewController: UIViewController, UIGestureRecognizerDelegate 
             headView.tag = head.id
             addGestureRecognizers(headView)
             imageView.addSubview(headView)
+            headViews.append(headView)
+            generatedHeads.append(head)
         }
+        let resizeFactor = UIScreen.mainScreen().bounds.size.width / imageView.frame.size.width
+        imageView.transform = CGAffineTransformMakeScale(resizeFactor, resizeFactor)
+        imageView.center = self.view.center
+        if results?.count == 0 {
+            SVProgressHUD.showErrorWithStatus("Could not find any faces")
+        } else {
+            SVProgressHUD.dismiss()
+        }
+        self.view.addSubview(imageView)
+        self.view.sendSubviewToBack(imageView)
     }
     
     func getImageViewForHead(head: JordanHead) -> UIImageView {
@@ -56,7 +71,7 @@ class ImageEditingViewController: UIViewController, UIGestureRecognizerDelegate 
         jordanHeadImage.backgroundColor = UIColor.clearColor()
         if head.faceFeature.hasRightEyePosition && head.faceFeature.hasLeftEyePosition {
             if head.faceFeature.rightEyePosition.y > head.faceFeature.leftEyePosition.y {
-                jordanHeadImage.transform = CGAffineTransformMakeScale(-1, 1)
+                jordanHeadImage.image = UIImage.init(named: "jordanHeadInverted.png")
                 head.facingRight = false
             }
         }
@@ -105,27 +120,27 @@ class ImageEditingViewController: UIViewController, UIGestureRecognizerDelegate 
     }
     
     func doubleTapGestureActivated(recognizer: UITapGestureRecognizer) {
-//        if let imageView = recognizer.view as? UIImageView {
-//            let tag = imageView.tag
-//            var tappedHead: JordanHead?
-//            for head in generatedHeads {
-//                if head.id == tag {
-//                    tappedHead = head
-//                    break
-//                }
-//            }
-//            guard (tappedHead != nil) else {
-//                return
-//            }
-//            // wtf why isnt this working
-//            if tappedHead?.facingRight == true {
-//                tappedHead?.imageView.transform = CGAffineTransformMakeScale(1, 1)
-//                tappedHead?.facingRight = true
-//            } else {
-//                tappedHead?.imageView.transform = CGAffineTransformMakeScale(-1, 1)
-//                tappedHead?.facingRight = false
-//            }
-//        }
+        if let imageView = recognizer.view as? UIImageView {
+            let tag = imageView.tag
+            var tappedHead: JordanHead?
+            for head in generatedHeads {
+                if head.id == tag {
+                    tappedHead = head
+                    break
+                }
+            }
+            guard (tappedHead != nil) else {
+                return
+            }
+            // wtf why isnt this working
+            if tappedHead?.facingRight == true {
+                imageView.image = UIImage.init(named: "jordanHeadInverted.png")
+                tappedHead?.facingRight = false
+            } else {
+                imageView.image = UIImage.init(named: "jordanHead.png")
+                tappedHead?.facingRight = true
+            }
+        }
     }
     
     func pinchGestureActivated(recognizer: UIPinchGestureRecognizer) {
@@ -149,5 +164,17 @@ class ImageEditingViewController: UIViewController, UIGestureRecognizerDelegate 
     
     @IBAction func cancelButtonClicked() {
         delegate?.controllerDidCancel(self)
+    }
+    
+    @IBAction func saveButtonTapped() {
+        SVProgressHUD.showWithStatus("Saving image...")
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) { () -> Void in
+            let newImage = self.imageView.convertToImage(self.correctedImage.size)
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                UIImageWriteToSavedPhotosAlbum(newImage, nil, nil, nil)
+                SVProgressHUD.dismiss()
+                self.self.delegate?.controllerDidCancel(self)
+            })
+        }
     }
 }

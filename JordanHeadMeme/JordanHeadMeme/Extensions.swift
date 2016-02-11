@@ -38,6 +38,16 @@ extension CIFaceFeature {
     }
 }
 
+extension UIView {
+    func convertToImage(imageSize: CGSize) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(imageSize, false, 0.0)
+        self.layer.renderInContext(UIGraphicsGetCurrentContext()!)
+        let newImage = UIImage.init(data: UIImageJPEGRepresentation(UIGraphicsGetImageFromCurrentImageContext(), 1.0)!)
+        UIGraphicsEndImageContext()
+        return newImage!
+    }
+}
+
 extension UIImage {
     func resize(newSize: CGSize) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
