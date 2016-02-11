@@ -8,6 +8,7 @@
 
 import UIKit
 import QuartzCore
+import SVProgressHUD
 
 protocol ImageEditingViewControllerDelegate: class {
     func controllerDidFinishWithImage(controller: ImageEditingViewController, image: UIImage)
@@ -17,64 +18,69 @@ protocol ImageEditingViewControllerDelegate: class {
 class ImageEditingViewController: UIViewController, UIGestureRecognizerDelegate {
     var uneditedImage: UIImage!
     var correctedImage: UIImage!
-    var screensizeImage: UIImage!
     var imageView: UIImageView!
     weak var delegate: ImageEditingViewControllerDelegate?
+    var headViews: [UIImageView] = [UIImageView]()
     var generatedHeads: [JordanHead] = [JordanHead]()
     
     // MARK: override methods
     
     override func viewDidLoad() {
+        SVProgressHUD.showWithStatus("Applying heads...")
         correctedImage = uneditedImage.fixOrientation
-        let newWidth = CGRectGetWidth(self.view.bounds)
-        let newHeight = (newWidth / uneditedImage.size.width) * uneditedImage.size.height
-        screensizeImage = correctedImage.resize(CGSizeMake(newWidth, newHeight))
-        imageView = UIImageView.init(image: screensizeImage)
-        imageView.frame = CGRectMake(0, 0, screensizeImage.size.width, screensizeImage.size.height)
+        imageView = UIImageView.init(image: correctedImage)
+        imageView.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))
+        imageView.frame = CGRectMake(0, 0, correctedImage.size.width, correctedImage.size.height)
         imageView.center = self.view.center
         imageView.userInteractionEnabled = true
-        self.view.addSubview(imageView)
+        imageView.contentMode = .ScaleAspectFit
     }
     
     override func viewDidAppear(animated: Bool) {
-        if let results = processImage() {
-            var counter = 0
-            for r in results {
-                counter++
-                let face: CIFaceFeature = r as! CIFaceFeature
-                if face.hasLeftEyePosition && face.hasRightEyePosition && face.hasMouthPosition {
-                    let jordanHead = drawJordanHead(getRectForDrawingHead(face), feature: face, tag: counter)
-                    imageView.addSubview(jordanHead.imageView)
-                    generatedHeads.append(jordanHead)
-                }
+        arrangeJordanHeads()
+    }
+    
+    // MARK: Image processing methods
+    
+    func arrangeJordanHeads() {
+        let results = ImageProcessor.processImage(correctedImage)
+        for head in results! {
+            let headView = getImageViewForHead(head)
+            headView.tag = head.id
+            addGestureRecognizers(headView)
+            imageView.addSubview(headView)
+            headViews.append(headView)
+            generatedHeads.append(head)
+        }
+        let resizeFactor = UIScreen.mainScreen().bounds.size.width / imageView.frame.size.width
+        imageView.transform = CGAffineTransformMakeScale(resizeFactor, resizeFactor)
+        imageView.center = self.view.center
+        if results?.count == 0 {
+            SVProgressHUD.showErrorWithStatus("Could not find any faces")
+        } else {
+            SVProgressHUD.dismiss()
+        }
+        self.view.addSubview(imageView)
+        self.view.sendSubviewToBack(imageView)
+    }
+    
+    func getImageViewForHead(head: JordanHead) -> UIImageView {
+        let jordanHeadImage = UIImageView.init(image: UIImage.init(named: "jordanHead.png"))
+        jordanHeadImage.frame = head.rect
+        jordanHeadImage.contentMode = .ScaleAspectFit
+        jordanHeadImage.backgroundColor = UIColor.clearColor()
+        if head.faceFeature.hasRightEyePosition && head.faceFeature.hasLeftEyePosition {
+            if head.faceFeature.rightEyePosition.y > head.faceFeature.leftEyePosition.y {
+                jordanHeadImage.image = UIImage.init(named: "jordanHeadInverted.png")
+                head.facingRight = false
             }
         }
+        jordanHeadImage.transform = CGAffineTransformMakeRotation(CGFloat(head.faceFeature.faceAngle * Float(M_PI/180)))
+        jordanHeadImage.userInteractionEnabled = true
+        return jordanHeadImage
     }
     
     // MARK: UI Drawing Methods
-
-    func drawJordanHead(drawRect: CGRect, feature: CIFaceFeature, tag: Int) -> JordanHead {
-        let jordanHead = JordanHead()
-        let jordanHeadImage = UIImageView.init(image: UIImage.init(named: "jordanHead.png"))
-        jordanHeadImage.frame = drawRect
-        jordanHeadImage.contentMode = .ScaleAspectFit
-        jordanHeadImage.backgroundColor = UIColor.clearColor()
-        if feature.hasRightEyePosition && feature.hasLeftEyePosition {
-            if feature.rightEyePosition.y > feature.leftEyePosition.y {
-                jordanHeadImage.transform = CGAffineTransformMakeScale(-1, 1)
-                jordanHead.facingRight = false
-            }
-        }
-        jordanHeadImage.transform = CGAffineTransformMakeRotation(CGFloat(feature.faceAngle * Float(M_PI/180)))
-        jordanHeadImage.userInteractionEnabled = true
-        
-        addGestureRecognizers(jordanHeadImage)
-        jordanHeadImage.tag = tag
-        jordanHead.imageView = jordanHeadImage
-        jordanHead.faceID = tag
-        jordanHead.faceFeature = feature
-        return jordanHead
-    }
     
     func addGestureRecognizers(head: UIImageView) {
         let panner = UIPanGestureRecognizer.init(target: self, action: Selector("panGestureActivated:"))
@@ -118,7 +124,7 @@ class ImageEditingViewController: UIViewController, UIGestureRecognizerDelegate 
             let tag = imageView.tag
             var tappedHead: JordanHead?
             for head in generatedHeads {
-                if head.faceID == tag {
+                if head.id == tag {
                     tappedHead = head
                     break
                 }
@@ -128,11 +134,11 @@ class ImageEditingViewController: UIViewController, UIGestureRecognizerDelegate 
             }
             // wtf why isnt this working
             if tappedHead?.facingRight == true {
-                tappedHead?.imageView.transform = CGAffineTransformMakeScale(1, 1)
-                tappedHead?.facingRight = true
-            } else {
-                tappedHead?.imageView.transform = CGAffineTransformMakeScale(-1, 1)
+                imageView.image = UIImage.init(named: "jordanHeadInverted.png")
                 tappedHead?.facingRight = false
+            } else {
+                imageView.image = UIImage.init(named: "jordanHead.png")
+                tappedHead?.facingRight = true
             }
         }
     }
@@ -150,36 +156,6 @@ class ImageEditingViewController: UIViewController, UIGestureRecognizerDelegate 
         return true
     }
     
-    // MARK: Face detection methods
-    
-    func getRectForDrawingHead(detectedFace: CIFaceFeature) -> CGRect {
-        var transform = CGAffineTransformMakeScale(1, -1)
-        transform = CGAffineTransformTranslate(transform, 0, -imageView.bounds.size.height)
-        var faceRect = CGRectApplyAffineTransform(detectedFace.bounds, transform)
-        if detectedFace.hasLeftEyePosition && detectedFace.hasRightEyePosition {
-            let higherPoint = (detectedFace.leftEyePosition.y > detectedFace.rightEyePosition.y ? detectedFace.leftEyePosition : detectedFace.rightEyePosition)
-            let alteredPoint  = CGPointApplyAffineTransform(higherPoint, transform)
-            let centerPoint = faceRect.rectCenter
-            let distance = 3.14 * abs(centerPoint.y - alteredPoint.y)
-            let alteredDistance = (faceRect.origin.y + faceRect.size.height) - (alteredPoint.y - distance)
-            faceRect = CGRectMake(faceRect.origin.x, alteredPoint.y - distance, faceRect.size.width, alteredDistance)
-        }
-        return faceRect
-    }
-
-    func processImage() -> NSArray? {
-        if let image = imageView.image {
-            let ciImage = CIImage(CGImage: image.CGImage!)
-            return getFaceDetector().featuresInImage(ciImage)
-        } else {
-            return nil
-        }
-    }
-
-    func getFaceDetector() -> CIDetector {
-        return CIDetector.init(ofType: CIDetectorTypeFace, context: nil, options: [CIDetectorAccuracy: CIDetectorAccuracyHigh])
-    }
-    
     // MARK: IBActions
     
     @IBAction func doneButtonClicked() {
@@ -188,5 +164,17 @@ class ImageEditingViewController: UIViewController, UIGestureRecognizerDelegate 
     
     @IBAction func cancelButtonClicked() {
         delegate?.controllerDidCancel(self)
+    }
+    
+    @IBAction func saveButtonTapped() {
+        SVProgressHUD.showWithStatus("Saving image...")
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) { () -> Void in
+            let newImage = self.imageView.convertToImage(self.correctedImage.size)
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                UIImageWriteToSavedPhotosAlbum(newImage, nil, nil, nil)
+                SVProgressHUD.dismiss()
+                self.self.delegate?.controllerDidCancel(self)
+            })
+        }
     }
 }

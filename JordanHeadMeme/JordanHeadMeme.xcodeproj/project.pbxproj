@@ -17,6 +17,7 @@
 		507C70101C24A4C900B8D890 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 507C700E1C24A4C900B8D890 /* LaunchScreen.storyboard */; };
 		507C701B1C24A4C900B8D890 /* JordanHeadMemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507C701A1C24A4C900B8D890 /* JordanHeadMemeTests.swift */; };
 		507C70261C24A4C900B8D890 /* JordanHeadMemeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507C70251C24A4C900B8D890 /* JordanHeadMemeUITests.swift */; };
+		50D0C19E1C6904FE00DB8A51 /* ImageProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D0C19D1C6904FE00DB8A51 /* ImageProcessor.swift */; };
 		8E2505074C6ECA865CCF0E77 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41EEAA9708D97A41BCCE00CD /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +56,7 @@
 		507C70211C24A4C900B8D890 /* JordanHeadMemeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JordanHeadMemeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		507C70251C24A4C900B8D890 /* JordanHeadMemeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JordanHeadMemeUITests.swift; sourceTree = "<group>"; };
 		507C70271C24A4C900B8D890 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		50D0C19D1C6904FE00DB8A51 /* ImageProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageProcessor.swift; sourceTree = "<group>"; };
 		62FF1E4695868853A6137486 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		BBEF34FFE6AFCDDFD3409F74 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -123,6 +125,7 @@
 				507C70071C24A4C900B8D890 /* ViewController.swift */,
 				5031DEF21C24AA1E00473339 /* ImageEditingViewController.swift */,
 				501A5F5A1C25E9F00070ECD6 /* JordanHead.swift */,
+				50D0C19D1C6904FE00DB8A51 /* ImageProcessor.swift */,
 				501A5F561C25E32D0070ECD6 /* Extensions.swift */,
 				507C70091C24A4C900B8D890 /* Main.storyboard */,
 				507C700C1C24A4C900B8D890 /* Assets.xcassets */,
@@ -344,6 +347,7 @@
 				507C70061C24A4C900B8D890 /* AppDelegate.swift in Sources */,
 				5031DEF31C24AA1E00473339 /* ImageEditingViewController.swift in Sources */,
 				501A5F5B1C25E9F00070ECD6 /* JordanHead.swift in Sources */,
+				50D0C19E1C6904FE00DB8A51 /* ImageProcessor.swift in Sources */,
 				501A5F571C25E32D0070ECD6 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -488,6 +492,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = JordanHeadMeme/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.okun.JordanHeadMeme;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -500,6 +505,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = JordanHeadMeme/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.okun.JordanHeadMeme;
 				PRODUCT_NAME = "$(TARGET_NAME)";

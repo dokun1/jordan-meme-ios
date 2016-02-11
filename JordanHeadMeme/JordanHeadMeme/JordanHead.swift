@@ -9,9 +9,13 @@
 import Foundation
 import UIKit
 
-class JordanHead: UIView {
-    var imageView = UIImageView()
+class JordanHead: NSObject {
+    var id = Int()
     var facingRight = true
-    var faceID = Int()
     var faceFeature = CIFaceFeature()
+    var rect = CGRect()
+    
+    override var description: String {
+        return "id: \(id), rect: \(NSStringFromCGRect(rect))"
+    }
 }
