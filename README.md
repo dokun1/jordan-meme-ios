@@ -25,12 +25,12 @@ This is what the still image looks like:
 - [ ] a plus button to add head in middle for missed heads
 - [ ] 3D touch to add head in specific place
 - [ ] figure out why double tapping isn't working properly
-- [ ] error message to display if no heads detected
+- [x] error message to display if no heads detected ([@dokun1](https://github.com/dokun1))
 - [ ] long press to slowly expand size of head, instead of pinch to expand
 - [ ] color scheme
 - [ ] UI instructions on editing screen
 - [ ] app icon
-- [ ] save to camera roll function
+- [x] save to camera roll function ([@dokun1](https://github.com/dokun1))
 - [ ] share to social media function
 
 ## Example
