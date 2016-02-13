@@ -24,7 +24,7 @@ This is what the still image looks like:
 - [ ] add overlay like Facebook comment view for metadata/share/cancel/done
 - [ ] a plus button to add head in middle for missed heads
 - [ ] 3D touch to add head in specific place
-- [ ] figure out why double tapping isn't working properly
+- [x] figure out why double tapping isn't working properly ([@dokun1](https://github.com/dokun1))
 - [x] error message to display if no heads detected ([@dokun1](https://github.com/dokun1))
 - [ ] long press to slowly expand size of head, instead of pinch to expand
 - [ ] color scheme
