@@ -19,7 +19,7 @@ This is what the still image looks like:
 ## Todo List (Contributors, look here!)
 
 - [x] use full resolution image on image view ([@dokun1](https://github.com/dokun1))
-- [ ] unit test suite
+- [ ] unit test suite (in progress - [@dokun1](https://github.com/dokun1))
 - [ ] flick up to get rid of head
 - [ ] add overlay like Facebook comment view for metadata/share/cancel/done
 - [ ] a plus button to add head in middle for missed heads
