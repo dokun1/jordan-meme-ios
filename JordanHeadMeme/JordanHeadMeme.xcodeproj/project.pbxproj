@@ -18,6 +18,18 @@
 		507C701B1C24A4C900B8D890 /* JordanHeadMemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507C701A1C24A4C900B8D890 /* JordanHeadMemeTests.swift */; };
 		507C70261C24A4C900B8D890 /* JordanHeadMemeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507C70251C24A4C900B8D890 /* JordanHeadMemeUITests.swift */; };
 		50D0C19E1C6904FE00DB8A51 /* ImageProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D0C19D1C6904FE00DB8A51 /* ImageProcessor.swift */; };
+		50E267131C6F1CF20075306C /* ImageProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D0C19D1C6904FE00DB8A51 /* ImageProcessor.swift */; };
+		50E267141C6F1CFB0075306C /* JordanHead.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501A5F5A1C25E9F00070ECD6 /* JordanHead.swift */; };
+		50E2671A1C70AF190075306C /* elevenFaces.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50E267171C70AF190075306C /* elevenFaces.jpg */; };
+		50E2671B1C70AF190075306C /* fiveFaces.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50E267181C70AF190075306C /* fiveFaces.jpg */; };
+		50E2671C1C70AF190075306C /* fourFaces.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50E267191C70AF190075306C /* fourFaces.jpg */; };
+		50E2671D1C70B1970075306C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501A5F561C25E32D0070ECD6 /* Extensions.swift */; };
+		50E267211C70B76E0075306C /* oneFace.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50E2671E1C70B76E0075306C /* oneFace.jpg */; };
+		50E267221C70B76E0075306C /* threeFaces.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50E2671F1C70B76E0075306C /* threeFaces.jpg */; };
+		50E267231C70B76E0075306C /* twoFaces.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50E267201C70B76E0075306C /* twoFaces.jpg */; };
+		50E267251C70BBE60075306C /* beardFace.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50E267241C70BBE60075306C /* beardFace.jpg */; };
+		50E267281C70BD7B0075306C /* leftFacingFace.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50E267261C70BD7B0075306C /* leftFacingFace.jpg */; };
+		50E267291C70BD7B0075306C /* rightFacingFace.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50E267271C70BD7B0075306C /* rightFacingFace.jpg */; };
 		8E2505074C6ECA865CCF0E77 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41EEAA9708D97A41BCCE00CD /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +69,15 @@
 		507C70251C24A4C900B8D890 /* JordanHeadMemeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JordanHeadMemeUITests.swift; sourceTree = "<group>"; };
 		507C70271C24A4C900B8D890 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50D0C19D1C6904FE00DB8A51 /* ImageProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageProcessor.swift; sourceTree = "<group>"; };
+		50E267171C70AF190075306C /* elevenFaces.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = elevenFaces.jpg; sourceTree = "<group>"; };
+		50E267181C70AF190075306C /* fiveFaces.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = fiveFaces.jpg; sourceTree = "<group>"; };
+		50E267191C70AF190075306C /* fourFaces.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = fourFaces.jpg; sourceTree = "<group>"; };
+		50E2671E1C70B76E0075306C /* oneFace.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = oneFace.jpg; sourceTree = "<group>"; };
+		50E2671F1C70B76E0075306C /* threeFaces.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = threeFaces.jpg; sourceTree = "<group>"; };
+		50E267201C70B76E0075306C /* twoFaces.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = twoFaces.jpg; sourceTree = "<group>"; };
+		50E267241C70BBE60075306C /* beardFace.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = beardFace.jpg; sourceTree = "<group>"; };
+		50E267261C70BD7B0075306C /* leftFacingFace.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = leftFacingFace.jpg; sourceTree = "<group>"; };
+		50E267271C70BD7B0075306C /* rightFacingFace.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = rightFacingFace.jpg; sourceTree = "<group>"; };
 		62FF1E4695868853A6137486 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		BBEF34FFE6AFCDDFD3409F74 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -139,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				507C701A1C24A4C900B8D890 /* JordanHeadMemeTests.swift */,
+				50E267161C70AF190075306C /* testPhotos */,
 				507C701C1C24A4C900B8D890 /* Info.plist */,
 			);
 			path = JordanHeadMemeTests;
@@ -151,6 +173,22 @@
 				507C70271C24A4C900B8D890 /* Info.plist */,
 			);
 			path = JordanHeadMemeUITests;
+			sourceTree = "<group>";
+		};
+		50E267161C70AF190075306C /* testPhotos */ = {
+			isa = PBXGroup;
+			children = (
+				50E267261C70BD7B0075306C /* leftFacingFace.jpg */,
+				50E267271C70BD7B0075306C /* rightFacingFace.jpg */,
+				50E267241C70BBE60075306C /* beardFace.jpg */,
+				50E2671E1C70B76E0075306C /* oneFace.jpg */,
+				50E2671F1C70B76E0075306C /* threeFaces.jpg */,
+				50E267201C70B76E0075306C /* twoFaces.jpg */,
+				50E267171C70AF190075306C /* elevenFaces.jpg */,
+				50E267181C70AF190075306C /* fiveFaces.jpg */,
+				50E267191C70AF190075306C /* fourFaces.jpg */,
+			);
+			path = testPhotos;
 			sourceTree = "<group>";
 		};
 		ED932200BE5A2CBB281C42EC /* Frameworks */ = {
@@ -278,6 +316,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50E2671B1C70AF190075306C /* fiveFaces.jpg in Resources */,
+				50E2671C1C70AF190075306C /* fourFaces.jpg in Resources */,
+				50E2671A1C70AF190075306C /* elevenFaces.jpg in Resources */,
+				50E267291C70BD7B0075306C /* rightFacingFace.jpg in Resources */,
+				50E267281C70BD7B0075306C /* leftFacingFace.jpg in Resources */,
+				50E267251C70BBE60075306C /* beardFace.jpg in Resources */,
+				50E267231C70B76E0075306C /* twoFaces.jpg in Resources */,
+				50E267221C70B76E0075306C /* threeFaces.jpg in Resources */,
+				50E267211C70B76E0075306C /* oneFace.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,7 +403,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50E267141C6F1CFB0075306C /* JordanHead.swift in Sources */,
+				50E267131C6F1CF20075306C /* ImageProcessor.swift in Sources */,
 				507C701B1C24A4C900B8D890 /* JordanHeadMemeTests.swift in Sources */,
+				50E2671D1C70B1970075306C /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
