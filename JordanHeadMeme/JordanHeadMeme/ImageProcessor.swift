@@ -49,6 +49,8 @@ class ImageProcessor: NSObject {
         if feature.hasRightEyePosition && feature.hasLeftEyePosition {
             if feature.rightEyePosition.y > feature.leftEyePosition.y {
                 jordanHeadImage.transform = CGAffineTransformMakeScale(-1, 1)
+                jordanHead.facingRight = true
+            } else {
                 jordanHead.facingRight = false
             }
         }

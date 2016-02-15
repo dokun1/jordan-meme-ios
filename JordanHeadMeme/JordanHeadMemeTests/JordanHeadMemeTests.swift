@@ -21,9 +21,13 @@ class JordanHeadMemeTests: XCTestCase {
         super.tearDown()
     }
     
-    func getAppliedFaces(photoPrefix: String) -> [JordanHead]? {
-        let filename = "\(photoPrefix).jpg"
-        let image = UIImage.init(named: filename)
+    func getAppliedFaces(filename: String) -> [JordanHead]? {
+        let bundle = NSBundle(forClass: self.dynamicType)
+        let path = bundle.pathForResource(filename, ofType: "jpg")
+        if path == nil {
+            return nil
+        }
+        let image = UIImage.init(contentsOfFile: path!)
         if image == nil {
             return nil
         }

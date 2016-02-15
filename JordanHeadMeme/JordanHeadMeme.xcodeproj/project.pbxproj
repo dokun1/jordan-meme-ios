@@ -30,6 +30,8 @@
 		50E267251C70BBE60075306C /* beardFace.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50E267241C70BBE60075306C /* beardFace.jpg */; };
 		50E267281C70BD7B0075306C /* leftFacingFace.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50E267261C70BD7B0075306C /* leftFacingFace.jpg */; };
 		50E267291C70BD7B0075306C /* rightFacingFace.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50E267271C70BD7B0075306C /* rightFacingFace.jpg */; };
+		50E2672B1C7248A10075306C /* glassesFace.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50E2672A1C7248A10075306C /* glassesFace.jpg */; };
+		50E2672D1C7248DE0075306C /* noFaces.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50E2672C1C7248DE0075306C /* noFaces.jpg */; };
 		8E2505074C6ECA865CCF0E77 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41EEAA9708D97A41BCCE00CD /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +80,8 @@
 		50E267241C70BBE60075306C /* beardFace.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = beardFace.jpg; sourceTree = "<group>"; };
 		50E267261C70BD7B0075306C /* leftFacingFace.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = leftFacingFace.jpg; sourceTree = "<group>"; };
 		50E267271C70BD7B0075306C /* rightFacingFace.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = rightFacingFace.jpg; sourceTree = "<group>"; };
+		50E2672A1C7248A10075306C /* glassesFace.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = glassesFace.jpg; sourceTree = "<group>"; };
+		50E2672C1C7248DE0075306C /* noFaces.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = noFaces.jpg; sourceTree = "<group>"; };
 		62FF1E4695868853A6137486 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		BBEF34FFE6AFCDDFD3409F74 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -178,10 +182,12 @@
 		50E267161C70AF190075306C /* testPhotos */ = {
 			isa = PBXGroup;
 			children = (
+				50E2672A1C7248A10075306C /* glassesFace.jpg */,
 				50E267261C70BD7B0075306C /* leftFacingFace.jpg */,
 				50E267271C70BD7B0075306C /* rightFacingFace.jpg */,
 				50E267241C70BBE60075306C /* beardFace.jpg */,
 				50E2671E1C70B76E0075306C /* oneFace.jpg */,
+				50E2672C1C7248DE0075306C /* noFaces.jpg */,
 				50E2671F1C70B76E0075306C /* threeFaces.jpg */,
 				50E267201C70B76E0075306C /* twoFaces.jpg */,
 				50E267171C70AF190075306C /* elevenFaces.jpg */,
@@ -321,8 +327,10 @@
 				50E2671A1C70AF190075306C /* elevenFaces.jpg in Resources */,
 				50E267291C70BD7B0075306C /* rightFacingFace.jpg in Resources */,
 				50E267281C70BD7B0075306C /* leftFacingFace.jpg in Resources */,
+				50E2672D1C7248DE0075306C /* noFaces.jpg in Resources */,
 				50E267251C70BBE60075306C /* beardFace.jpg in Resources */,
 				50E267231C70B76E0075306C /* twoFaces.jpg in Resources */,
+				50E2672B1C7248A10075306C /* glassesFace.jpg in Resources */,
 				50E267221C70B76E0075306C /* threeFaces.jpg in Resources */,
 				50E267211C70B76E0075306C /* oneFace.jpg in Resources */,
 			);
