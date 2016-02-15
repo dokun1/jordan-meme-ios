@@ -49,6 +49,18 @@ extension UIView {
 }
 
 extension UIImage {
+    func drawRectangle(bounds: CGRect, color: UIColor) -> UIImage {
+        UIGraphicsBeginImageContext(self.size)
+        self.drawAtPoint(CGPointZero)
+        let context = UIGraphicsGetCurrentContext()
+        CGContextSetLineWidth(context, 3)
+        color.setStroke()
+        CGContextStrokeRect(context, bounds)
+        let returnedImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return returnedImage
+    }
+    
     func resize(newSize: CGSize) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
         self.drawInRect(CGRectMake(0, 0, newSize.width, newSize.height))

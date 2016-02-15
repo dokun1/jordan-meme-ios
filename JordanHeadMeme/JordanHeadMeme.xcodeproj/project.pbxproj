@@ -16,20 +16,26 @@
 		507C700D1C24A4C900B8D890 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 507C700C1C24A4C900B8D890 /* Assets.xcassets */; };
 		507C70101C24A4C900B8D890 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 507C700E1C24A4C900B8D890 /* LaunchScreen.storyboard */; };
 		507C701B1C24A4C900B8D890 /* JordanHeadMemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507C701A1C24A4C900B8D890 /* JordanHeadMemeTests.swift */; };
-		507C70261C24A4C900B8D890 /* JordanHeadMemeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507C70251C24A4C900B8D890 /* JordanHeadMemeUITests.swift */; };
 		50D0C19E1C6904FE00DB8A51 /* ImageProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D0C19D1C6904FE00DB8A51 /* ImageProcessor.swift */; };
+		50E267131C6F1CF20075306C /* ImageProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D0C19D1C6904FE00DB8A51 /* ImageProcessor.swift */; };
+		50E267141C6F1CFB0075306C /* JordanHead.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501A5F5A1C25E9F00070ECD6 /* JordanHead.swift */; };
+		50E2671A1C70AF190075306C /* elevenFaces.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50E267171C70AF190075306C /* elevenFaces.jpg */; };
+		50E2671B1C70AF190075306C /* fiveFaces.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50E267181C70AF190075306C /* fiveFaces.jpg */; };
+		50E2671C1C70AF190075306C /* fourFaces.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50E267191C70AF190075306C /* fourFaces.jpg */; };
+		50E2671D1C70B1970075306C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501A5F561C25E32D0070ECD6 /* Extensions.swift */; };
+		50E267211C70B76E0075306C /* oneFace.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50E2671E1C70B76E0075306C /* oneFace.jpg */; };
+		50E267221C70B76E0075306C /* threeFaces.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50E2671F1C70B76E0075306C /* threeFaces.jpg */; };
+		50E267231C70B76E0075306C /* twoFaces.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50E267201C70B76E0075306C /* twoFaces.jpg */; };
+		50E267251C70BBE60075306C /* beardFace.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50E267241C70BBE60075306C /* beardFace.jpg */; };
+		50E267281C70BD7B0075306C /* leftFacingFace.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50E267261C70BD7B0075306C /* leftFacingFace.jpg */; };
+		50E267291C70BD7B0075306C /* rightFacingFace.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50E267271C70BD7B0075306C /* rightFacingFace.jpg */; };
+		50E2672B1C7248A10075306C /* glassesFace.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50E2672A1C7248A10075306C /* glassesFace.jpg */; };
+		50E2672D1C7248DE0075306C /* noFaces.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50E2672C1C7248DE0075306C /* noFaces.jpg */; };
 		8E2505074C6ECA865CCF0E77 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41EEAA9708D97A41BCCE00CD /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		507C70171C24A4C900B8D890 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 507C6FFA1C24A4C900B8D890 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 507C70011C24A4C900B8D890;
-			remoteInfo = JordanHeadMeme;
-		};
-		507C70221C24A4C900B8D890 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 507C6FFA1C24A4C900B8D890 /* Project object */;
 			proxyType = 1;
@@ -53,10 +59,18 @@
 		507C70161C24A4C900B8D890 /* JordanHeadMemeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JordanHeadMemeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		507C701A1C24A4C900B8D890 /* JordanHeadMemeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JordanHeadMemeTests.swift; sourceTree = "<group>"; };
 		507C701C1C24A4C900B8D890 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		507C70211C24A4C900B8D890 /* JordanHeadMemeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JordanHeadMemeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		507C70251C24A4C900B8D890 /* JordanHeadMemeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JordanHeadMemeUITests.swift; sourceTree = "<group>"; };
-		507C70271C24A4C900B8D890 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50D0C19D1C6904FE00DB8A51 /* ImageProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageProcessor.swift; sourceTree = "<group>"; };
+		50E267171C70AF190075306C /* elevenFaces.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = elevenFaces.jpg; sourceTree = "<group>"; };
+		50E267181C70AF190075306C /* fiveFaces.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = fiveFaces.jpg; sourceTree = "<group>"; };
+		50E267191C70AF190075306C /* fourFaces.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = fourFaces.jpg; sourceTree = "<group>"; };
+		50E2671E1C70B76E0075306C /* oneFace.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = oneFace.jpg; sourceTree = "<group>"; };
+		50E2671F1C70B76E0075306C /* threeFaces.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = threeFaces.jpg; sourceTree = "<group>"; };
+		50E267201C70B76E0075306C /* twoFaces.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = twoFaces.jpg; sourceTree = "<group>"; };
+		50E267241C70BBE60075306C /* beardFace.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = beardFace.jpg; sourceTree = "<group>"; };
+		50E267261C70BD7B0075306C /* leftFacingFace.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = leftFacingFace.jpg; sourceTree = "<group>"; };
+		50E267271C70BD7B0075306C /* rightFacingFace.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = rightFacingFace.jpg; sourceTree = "<group>"; };
+		50E2672A1C7248A10075306C /* glassesFace.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = glassesFace.jpg; sourceTree = "<group>"; };
+		50E2672C1C7248DE0075306C /* noFaces.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = noFaces.jpg; sourceTree = "<group>"; };
 		62FF1E4695868853A6137486 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		BBEF34FFE6AFCDDFD3409F74 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -71,13 +85,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		507C70131C24A4C900B8D890 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		507C701E1C24A4C900B8D890 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -101,7 +108,6 @@
 			children = (
 				507C70041C24A4C900B8D890 /* JordanHeadMeme */,
 				507C70191C24A4C900B8D890 /* JordanHeadMemeTests */,
-				507C70241C24A4C900B8D890 /* JordanHeadMemeUITests */,
 				507C70031C24A4C900B8D890 /* Products */,
 				4743B973631D85A3D9073688 /* Pods */,
 				ED932200BE5A2CBB281C42EC /* Frameworks */,
@@ -113,7 +119,6 @@
 			children = (
 				507C70021C24A4C900B8D890 /* JordanHeadMeme.app */,
 				507C70161C24A4C900B8D890 /* JordanHeadMemeTests.xctest */,
-				507C70211C24A4C900B8D890 /* JordanHeadMemeUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -139,18 +144,28 @@
 			isa = PBXGroup;
 			children = (
 				507C701A1C24A4C900B8D890 /* JordanHeadMemeTests.swift */,
+				50E267161C70AF190075306C /* testPhotos */,
 				507C701C1C24A4C900B8D890 /* Info.plist */,
 			);
 			path = JordanHeadMemeTests;
 			sourceTree = "<group>";
 		};
-		507C70241C24A4C900B8D890 /* JordanHeadMemeUITests */ = {
+		50E267161C70AF190075306C /* testPhotos */ = {
 			isa = PBXGroup;
 			children = (
-				507C70251C24A4C900B8D890 /* JordanHeadMemeUITests.swift */,
-				507C70271C24A4C900B8D890 /* Info.plist */,
+				50E2672A1C7248A10075306C /* glassesFace.jpg */,
+				50E267261C70BD7B0075306C /* leftFacingFace.jpg */,
+				50E267271C70BD7B0075306C /* rightFacingFace.jpg */,
+				50E267241C70BBE60075306C /* beardFace.jpg */,
+				50E2671E1C70B76E0075306C /* oneFace.jpg */,
+				50E2672C1C7248DE0075306C /* noFaces.jpg */,
+				50E2671F1C70B76E0075306C /* threeFaces.jpg */,
+				50E267201C70B76E0075306C /* twoFaces.jpg */,
+				50E267171C70AF190075306C /* elevenFaces.jpg */,
+				50E267181C70AF190075306C /* fiveFaces.jpg */,
+				50E267191C70AF190075306C /* fourFaces.jpg */,
 			);
-			path = JordanHeadMemeUITests;
+			path = testPhotos;
 			sourceTree = "<group>";
 		};
 		ED932200BE5A2CBB281C42EC /* Frameworks */ = {
@@ -202,24 +217,6 @@
 			productReference = 507C70161C24A4C900B8D890 /* JordanHeadMemeTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		507C70201C24A4C900B8D890 /* JordanHeadMemeUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 507C70301C24A4C900B8D890 /* Build configuration list for PBXNativeTarget "JordanHeadMemeUITests" */;
-			buildPhases = (
-				507C701D1C24A4C900B8D890 /* Sources */,
-				507C701E1C24A4C900B8D890 /* Frameworks */,
-				507C701F1C24A4C900B8D890 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				507C70231C24A4C900B8D890 /* PBXTargetDependency */,
-			);
-			name = JordanHeadMemeUITests;
-			productName = JordanHeadMemeUITests;
-			productReference = 507C70211C24A4C900B8D890 /* JordanHeadMemeUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -234,10 +231,6 @@
 						CreatedOnToolsVersion = 7.2;
 					};
 					507C70151C24A4C900B8D890 = {
-						CreatedOnToolsVersion = 7.2;
-						TestTargetID = 507C70011C24A4C900B8D890;
-					};
-					507C70201C24A4C900B8D890 = {
 						CreatedOnToolsVersion = 7.2;
 						TestTargetID = 507C70011C24A4C900B8D890;
 					};
@@ -258,7 +251,6 @@
 			targets = (
 				507C70011C24A4C900B8D890 /* JordanHeadMeme */,
 				507C70151C24A4C900B8D890 /* JordanHeadMemeTests */,
-				507C70201C24A4C900B8D890 /* JordanHeadMemeUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -278,13 +270,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		507C701F1C24A4C900B8D890 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				50E2671B1C70AF190075306C /* fiveFaces.jpg in Resources */,
+				50E2671C1C70AF190075306C /* fourFaces.jpg in Resources */,
+				50E2671A1C70AF190075306C /* elevenFaces.jpg in Resources */,
+				50E267291C70BD7B0075306C /* rightFacingFace.jpg in Resources */,
+				50E267281C70BD7B0075306C /* leftFacingFace.jpg in Resources */,
+				50E2672D1C7248DE0075306C /* noFaces.jpg in Resources */,
+				50E267251C70BBE60075306C /* beardFace.jpg in Resources */,
+				50E267231C70B76E0075306C /* twoFaces.jpg in Resources */,
+				50E2672B1C7248A10075306C /* glassesFace.jpg in Resources */,
+				50E267221C70B76E0075306C /* threeFaces.jpg in Resources */,
+				50E267211C70B76E0075306C /* oneFace.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,15 +352,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50E267141C6F1CFB0075306C /* JordanHead.swift in Sources */,
+				50E267131C6F1CF20075306C /* ImageProcessor.swift in Sources */,
 				507C701B1C24A4C900B8D890 /* JordanHeadMemeTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		507C701D1C24A4C900B8D890 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				507C70261C24A4C900B8D890 /* JordanHeadMemeUITests.swift in Sources */,
+				50E2671D1C70B1970075306C /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,11 +366,6 @@
 			isa = PBXTargetDependency;
 			target = 507C70011C24A4C900B8D890 /* JordanHeadMeme */;
 			targetProxy = 507C70171C24A4C900B8D890 /* PBXContainerItemProxy */;
-		};
-		507C70231C24A4C900B8D890 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 507C70011C24A4C900B8D890 /* JordanHeadMeme */;
-			targetProxy = 507C70221C24A4C900B8D890 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -536,30 +522,6 @@
 			};
 			name = Release;
 		};
-		507C70311C24A4C900B8D890 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = JordanHeadMemeUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.okun.JordanHeadMemeUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = JordanHeadMeme;
-				USES_XCTRUNNER = YES;
-			};
-			name = Debug;
-		};
-		507C70321C24A4C900B8D890 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = JordanHeadMemeUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.okun.JordanHeadMemeUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = JordanHeadMeme;
-				USES_XCTRUNNER = YES;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -586,15 +548,6 @@
 			buildConfigurations = (
 				507C702E1C24A4C900B8D890 /* Debug */,
 				507C702F1C24A4C900B8D890 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		507C70301C24A4C900B8D890 /* Build configuration list for PBXNativeTarget "JordanHeadMemeUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				507C70311C24A4C900B8D890 /* Debug */,
-				507C70321C24A4C900B8D890 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
