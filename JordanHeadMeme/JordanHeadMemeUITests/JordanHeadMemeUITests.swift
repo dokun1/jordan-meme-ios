@@ -28,27 +28,27 @@ class JordanHeadMemeUITests: XCTestCase {
         super.tearDown()
     }
     
-    func testChoosingPhotoFromCameraRollWithOneFace() {
-        let app = XCUIApplication()
-        app.buttons["Choose Photo"].tap()
-        app.tables.buttons["Camera Roll"].tap()
-        app.collectionViews.childrenMatchingType(.Cell).matchingIdentifier("Photo, Portrait, January 19, 2015, 11:10 PM").elementBoundByIndex(0).tap()
-        app.childrenMatchingType(.Window).elementBoundByIndex(0).childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.tap()
-        app.buttons["Done"].tap()
-        
-        XCTAssertTrue(app.buttons["Choose Photo"].exists, "Should be back on the home screen after tapping done")
-        XCTAssertTrue(app.buttons["Take Photo"].exists, "Should be back on the home screen after tapping done")
-    }
-    
-    func testSavingPhoto() {
-        let app = XCUIApplication()
-        app.buttons["Choose Photo"].tap()
-        app.tables.buttons["Camera Roll"].tap()
-        app.collectionViews.childrenMatchingType(.Cell).matchingIdentifier("Photo, Portrait, January 19, 2015, 11:10 PM").elementBoundByIndex(0).tap()
-        app.childrenMatchingType(.Window).elementBoundByIndex(0).childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.tap()
-        app.buttons["Save"].tap()
-        
-        XCTAssertTrue(app.buttons["Choose Photo"].exists, "Should be back on the home screen after tapping done")
-        XCTAssertTrue(app.buttons["Take Photo"].exists, "Should be back on the home screen after tapping done")
-    }
+//    func testChoosingPhotoFromCameraRollWithOneFace() {
+//        let app = XCUIApplication()
+//        app.buttons["Choose Photo"].tap()
+//        app.tables.buttons["Camera Roll"].tap()
+//        app.collectionViews.childrenMatchingType(.Cell).matchingIdentifier("Photo, Portrait, January 19, 2015, 11:10 PM").elementBoundByIndex(0).tap()
+//        app.childrenMatchingType(.Window).elementBoundByIndex(0).childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.tap()
+//        app.buttons["Done"].tap()
+//        
+//        XCTAssertTrue(app.buttons["Choose Photo"].exists, "Should be back on the home screen after tapping done")
+//        XCTAssertTrue(app.buttons["Take Photo"].exists, "Should be back on the home screen after tapping done")
+//    }
+//    
+//    func testSavingPhoto() {
+//        let app = XCUIApplication()
+//        app.buttons["Choose Photo"].tap()
+//        app.tables.buttons["Camera Roll"].tap()
+//        app.collectionViews.childrenMatchingType(.Cell).matchingIdentifier("Photo, Portrait, January 19, 2015, 11:10 PM").elementBoundByIndex(0).tap()
+//        app.childrenMatchingType(.Window).elementBoundByIndex(0).childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.tap()
+//        app.buttons["Save"].tap()
+//        
+//        XCTAssertTrue(app.buttons["Choose Photo"].exists, "Should be back on the home screen after tapping done")
+//        XCTAssertTrue(app.buttons["Take Photo"].exists, "Should be back on the home screen after tapping done")
+//    }
 }
