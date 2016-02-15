@@ -38,17 +38,7 @@
                ReferencedContainer = "container:JordanHeadMeme.xcodeproj">
             </BuildableReference>
          </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "507C70201C24A4C900B8D890"
-               BuildableName = "JordanHeadMemeUITests.xctest"
-               BlueprintName = "JordanHeadMemeUITests"
-               ReferencedContainer = "container:JordanHeadMeme.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-      </Testables>
+        </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
