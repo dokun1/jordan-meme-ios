@@ -15,11 +15,16 @@ protocol ImageEditingViewControllerDelegate: class {
     func controllerDidCancel(controller: ImageEditingViewController)
 }
 
-class ImageEditingViewController: UIViewController, UIGestureRecognizerDelegate {
+class ImageEditingViewController: UIViewController, UIGestureRecognizerDelegate, UIScrollViewDelegate {
+    weak var delegate: ImageEditingViewControllerDelegate?
+    @IBOutlet weak var scrollView: UIScrollView!
+    
+    
+
     var uneditedImage: UIImage!
     var correctedImage: UIImage!
     var imageView: UIImageView!
-    weak var delegate: ImageEditingViewControllerDelegate?
+    
     var headViews: [UIImageView] = [UIImageView]()
     var generatedHeads: [JordanHead] = [JordanHead]()
     
@@ -40,6 +45,35 @@ class ImageEditingViewController: UIViewController, UIGestureRecognizerDelegate 
         arrangeJordanHeads()
     }
     
+    // MARK: UIScrollViewDelegate Methods
+    
+    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+        return imageView
+    }
+    
+    func scrollViewDidZoom(scrollView: UIScrollView) {
+        centerScrollViewContents()
+    }
+    
+    func centerScrollViewContents() {
+        let boundsSize = scrollView.bounds.size
+        var contentsFrame = imageView.frame
+        
+        if (contentsFrame.size.width < boundsSize.width) {
+            contentsFrame.origin.x = (boundsSize.width - contentsFrame.size.width) / 2
+        } else {
+            contentsFrame.origin.x = 0
+        }
+        
+        if (contentsFrame.size.height < boundsSize.height) {
+            contentsFrame.origin.y = (boundsSize.height - contentsFrame.size.height) / 2
+        } else {
+            contentsFrame.origin.y = 0
+        }
+        
+        self.imageView.frame = contentsFrame;
+    }
+    
     // MARK: Image processing methods
     
     func arrangeJordanHeads() {
@@ -54,18 +88,20 @@ class ImageEditingViewController: UIViewController, UIGestureRecognizerDelegate 
         }
         let resizeFactor = UIScreen.mainScreen().bounds.size.width / imageView.frame.size.width
         imageView.transform = CGAffineTransformMakeScale(resizeFactor, resizeFactor)
-        imageView.center = self.view.center
+        scrollView.minimumZoomScale = resizeFactor
+        imageView.center = scrollView.center
         if results?.count == 0 {
             SVProgressHUD.showErrorWithStatus("Could not find any faces")
         } else {
             SVProgressHUD.dismiss()
         }
-        self.view.addSubview(imageView)
-        self.view.sendSubviewToBack(imageView)
+        scrollView.addSubview(imageView)
+        scrollView.sendSubviewToBack(imageView)
+        addEntirePhotoGestureRecognizers()
     }
     
     func getImageViewForHead(head: JordanHead) -> UIImageView {
-        let jordanHeadImage = UIImageView.init(image: UIImage.init(named: "jordanHead.png"))
+        let jordanHeadImage = JordanHeadImageView.init(head: head)
         jordanHeadImage.frame = head.rect
         jordanHeadImage.contentMode = .ScaleAspectFit
         jordanHeadImage.backgroundColor = UIColor.clearColor()
@@ -100,6 +136,14 @@ class ImageEditingViewController: UIViewController, UIGestureRecognizerDelegate 
         let rotator = UIRotationGestureRecognizer.init(target: self, action: Selector("rotationGestureActivated:"))
         rotator.delegate = self
         head.addGestureRecognizer(rotator)
+    }
+
+    func addEntirePhotoGestureRecognizers() {
+        let doubleTapper = UITapGestureRecognizer.init(target: self, action: Selector("doubleTapGestureActivatedMainView:"))
+        doubleTapper.numberOfTouchesRequired = 1
+        doubleTapper.numberOfTapsRequired = 2
+        doubleTapper.delegate = self
+        scrollView.addGestureRecognizer(doubleTapper)
     }
     
     // MARK: Gesture Recognizer Targets
@@ -150,10 +194,36 @@ class ImageEditingViewController: UIViewController, UIGestureRecognizerDelegate 
         }
     }
     
+    func doubleTapGestureActivatedMainView(recognizer: UITapGestureRecognizer) {
+        if scrollView.zoomScale == scrollView.minimumZoomScale { // zoom in at point
+            let newZoomScale = max(CGFloat(scrollView.zoomScale * 3), 3)
+            
+            let percentX = recognizer.locationInView(scrollView).x / scrollView.frame.size.width
+            let percentY = recognizer.locationInView(scrollView).y / scrollView.frame.size.height
+            
+            let translatedPoint = CGPointMake(correctedImage.size.width * percentX, correctedImage.size.height * percentY)
+            
+            let size = correctedImage.size
+            let w = size.width / newZoomScale
+            let h = size.height / newZoomScale
+            let x = translatedPoint.x - (w / 2)
+            let y = translatedPoint.y - (h / 2)
+            
+            let rectToZoomTo = CGRectMake(x, y, w, h)
+            scrollView.zoomToRect(rectToZoomTo, animated: true)
+        } else {
+            scrollView.setZoomScale(scrollView.minimumZoomScale, animated: true)
+        }
+    }
+    
     // MARK: UIGestureRecognizerDelegate Methods
     
     func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
+        if gestureRecognizer.view is JordanHeadImageView && otherGestureRecognizer.view is JordanHeadImageView { // we dont want both the scroll view and the jordan head to zoom simultaneously
+            return true
+        } else {
+            return false
+        }
     }
     
     // MARK: IBActions

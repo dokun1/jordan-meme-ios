@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		501844B31C7320AB0079561E /* JordanHeadImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501844B21C7320AB0079561E /* JordanHeadImageView.swift */; };
 		501A5F571C25E32D0070ECD6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501A5F561C25E32D0070ECD6 /* Extensions.swift */; };
 		501A5F5B1C25E9F00070ECD6 /* JordanHead.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501A5F5A1C25E9F00070ECD6 /* JordanHead.swift */; };
 		5031DEF31C24AA1E00473339 /* ImageEditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5031DEF21C24AA1E00473339 /* ImageEditingViewController.swift */; };
@@ -46,6 +47,7 @@
 
 /* Begin PBXFileReference section */
 		41EEAA9708D97A41BCCE00CD /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		501844B21C7320AB0079561E /* JordanHeadImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JordanHeadImageView.swift; sourceTree = "<group>"; };
 		501A5F561C25E32D0070ECD6 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		501A5F5A1C25E9F00070ECD6 /* JordanHead.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JordanHead.swift; sourceTree = "<group>"; };
 		5031DEF21C24AA1E00473339 /* ImageEditingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageEditingViewController.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				507C70071C24A4C900B8D890 /* ViewController.swift */,
 				5031DEF21C24AA1E00473339 /* ImageEditingViewController.swift */,
 				501A5F5A1C25E9F00070ECD6 /* JordanHead.swift */,
+				501844B21C7320AB0079561E /* JordanHeadImageView.swift */,
 				50D0C19D1C6904FE00DB8A51 /* ImageProcessor.swift */,
 				501A5F561C25E32D0070ECD6 /* Extensions.swift */,
 				507C70091C24A4C900B8D890 /* Main.storyboard */,
@@ -341,6 +344,7 @@
 			files = (
 				507C70081C24A4C900B8D890 /* ViewController.swift in Sources */,
 				507C70061C24A4C900B8D890 /* AppDelegate.swift in Sources */,
+				501844B31C7320AB0079561E /* JordanHeadImageView.swift in Sources */,
 				5031DEF31C24AA1E00473339 /* ImageEditingViewController.swift in Sources */,
 				501A5F5B1C25E9F00070ECD6 /* JordanHead.swift in Sources */,
 				50D0C19E1C6904FE00DB8A51 /* ImageProcessor.swift in Sources */,
