@@ -21,16 +21,16 @@ This is what the still image looks like:
 
 - [x] use full resolution image on image view ([@dokun1](https://github.com/dokun1))
 - [x] unit test suite ([@dokun1](https://github.com/dokun1))
-- [ ] flick up to get rid of head (in progress - [@dokun1](https://github.com/dokun1))
-- [ ] a plus button to add head in middle for missed heads (in progress - [@dokun1](https://github.com/dokun1))
+- [x] flick up to get rid of head ([@dokun1](https://github.com/dokun1))
+- [x] a plus button to add head in middle for missed heads ([@dokun1](https://github.com/dokun1))
 - [ ] 3D touch to add head in specific place (in progress - [@dokun1](https://github.com/dokun1))
 - [x] figure out why double tapping isn't working properly ([@dokun1](https://github.com/dokun1))
 - [x] error message to display if no heads detected ([@dokun1](https://github.com/dokun1))
-- [ ] color scheme
+- [x] color scheme ([@dokun1](https://github.com/dokun1))
 - [ ] UI instructions on editing screen
-- [ ] app icon
+- [x] app icon ([@dokun1](https://github.com/dokun1))
 - [x] save to camera roll function ([@dokun1](https://github.com/dokun1))
-- [ ] share to social media function
+- [x] share to social media function ([@dokun1](https://github.com/dokun1))
 
 ## Example
 
