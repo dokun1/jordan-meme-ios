@@ -21,13 +21,11 @@ This is what the still image looks like:
 
 - [x] use full resolution image on image view ([@dokun1](https://github.com/dokun1))
 - [x] unit test suite ([@dokun1](https://github.com/dokun1))
-- [ ] flick up to get rid of head
-- [ ] add overlay like Facebook comment view for metadata/share/cancel/done
-- [ ] a plus button to add head in middle for missed heads
-- [ ] 3D touch to add head in specific place
+- [ ] flick up to get rid of head (in progress - [@dokun1](https://github.com/dokun1))
+- [ ] a plus button to add head in middle for missed heads (in progress - [@dokun1](https://github.com/dokun1))
+- [ ] 3D touch to add head in specific place (in progress - [@dokun1](https://github.com/dokun1))
 - [x] figure out why double tapping isn't working properly ([@dokun1](https://github.com/dokun1))
 - [x] error message to display if no heads detected ([@dokun1](https://github.com/dokun1))
-- [ ] long press to slowly expand size of head, instead of pinch to expand
 - [ ] color scheme
 - [ ] UI instructions on editing screen
 - [ ] app icon
