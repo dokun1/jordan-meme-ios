@@ -11,7 +11,16 @@ import Foundation
 import Crashlytics
 
 class InfoViewController: UIViewController {
+    @IBOutlet weak var versionLabel: UILabel!
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        if let version = NSBundle.mainBundle().infoDictionary?["CFBundleShortVersionString"] as? String {
+            if let build = NSBundle.mainBundle().infoDictionary?["CFBundleVersion"] as? String {
+                versionLabel.text = "© David Okun, 2016, v\(version)-\(build)"
+            }
+        }
+    }
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         Answers.logCustomEventWithName("Info View Shown", customAttributes:nil)
@@ -43,7 +52,7 @@ class InfoViewController: UIViewController {
     
     @IBAction func reviewButtonTapped() {
         Answers.logCustomEventWithName("Social Link Tapped", customAttributes:["Site Loaded":"Review"])
-        let url = NSURL.init(string: "https://www.github.com/dokun1/jordan-meme-ios")
+        let url = NSURL.init(string: "itms-apps://itunes.apple.com/app/id1084796562")
         UIApplication.sharedApplication().openURL(url!)
     }
     

@@ -1,5 +1,5 @@
 platform :ios, '9.0'
-pod 'SVProgressHUD', :head
+pod 'SVProgressHUD', '~> 1.1'
 pod 'Fabric'
 pod 'Crashlytics'
 use_frameworks!

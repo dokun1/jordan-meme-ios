@@ -19,7 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        SVProgressHUD.setDefaultStyle(.Dark)
+        SVProgressHUD.setBackgroundColor(UIColor.colorSchemeTwo())
+        SVProgressHUD.setForegroundColor(UIColor.colorSchemeOne())
         application.statusBarHidden = true
         var performShortcutDelegate = true
         if let shortcutItem = launchOptions?[UIApplicationLaunchOptionsShortcutItemKey] as? UIApplicationShortcutItem {

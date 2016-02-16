@@ -3,6 +3,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -118,7 +119,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="39" id="QV8-pz-IZC"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                 <color key="textColor" red="0.38823529410000002" green="0.80000000000000004" blue="0.79215686269999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -138,50 +139,62 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="656-lo-kjs">
                                 <rect key="frame" x="20" y="100" width="560" height="80"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="byS-9I-GVv">
-                                        <rect key="frame" x="0.0" y="18" width="44" height="44"/>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nf0-6S-L3W">
+                                        <rect key="frame" x="202" y="20" width="44" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="44" id="Cgs-vl-jWQ"/>
-                                            <constraint firstAttribute="height" constant="44" id="cxl-8p-XgV"/>
+                                            <constraint firstAttribute="width" constant="44" id="ecr-2C-NYv"/>
+                                            <constraint firstAttribute="height" constant="40" id="wLy-7k-jQW"/>
                                         </constraints>
-                                        <state key="normal" title="Button" image="githubIcon"/>
-                                        <connections>
-                                            <action selector="githubIconTapped" destination="weJ-FM-YGL" eventType="touchUpInside" id="rdI-go-YGx"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nf0-6S-L3W">
-                                        <rect key="frame" x="84" y="20" width="44" height="40"/>
                                         <state key="normal" title="Button" image="twitterIcon"/>
                                         <connections>
                                             <action selector="twitterIconTapped" destination="weJ-FM-YGL" eventType="touchUpInside" id="kBB-j6-ory"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fSX-gR-gx6">
-                                        <rect key="frame" x="516" y="18" width="44" height="44"/>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gvr-rh-wi5">
+                                        <rect key="frame" x="314" y="18" width="44" height="44"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="44" id="CXc-rR-OgZ"/>
-                                            <constraint firstAttribute="height" constant="44" id="ex1-Sa-ffp"/>
+                                            <constraint firstAttribute="height" constant="44" id="Qvh-GF-H4W"/>
+                                            <constraint firstAttribute="width" constant="44" id="Yzs-Qq-d7f"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="instagramIcon"/>
+                                        <connections>
+                                            <action selector="instagramIconTapped" destination="weJ-FM-YGL" eventType="touchUpInside" id="3xi-p9-pui"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fSX-gR-gx6">
+                                        <rect key="frame" x="426" y="18" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="eoc-xi-kZw"/>
+                                            <constraint firstAttribute="height" constant="44" id="iCw-oi-rsG"/>
                                         </constraints>
                                         <state key="normal" title="Button" image="globeIcon"/>
                                         <connections>
                                             <action selector="internetIconTapped" destination="weJ-FM-YGL" eventType="touchUpInside" id="H7b-SS-jcB"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gvr-rh-wi5">
-                                        <rect key="frame" x="432" y="18" width="44" height="44"/>
-                                        <state key="normal" title="Button" image="instagramIcon"/>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="byS-9I-GVv">
+                                        <rect key="frame" x="90" y="18" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="4bf-af-TG9"/>
+                                            <constraint firstAttribute="width" constant="44" id="QWi-zA-ntn"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="githubIcon"/>
                                         <connections>
-                                            <action selector="instagramIconTapped" destination="weJ-FM-YGL" eventType="touchUpInside" id="3xi-p9-pui"/>
+                                            <action selector="githubIconTapped" destination="weJ-FM-YGL" eventType="touchUpInside" id="rdI-go-YGx"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="byS-9I-GVv" firstAttribute="leading" secondItem="656-lo-kjs" secondAttribute="leading" id="HSB-NH-I44"/>
-                                    <constraint firstItem="byS-9I-GVv" firstAttribute="top" secondItem="656-lo-kjs" secondAttribute="top" constant="18" id="L5R-7o-KwS"/>
-                                    <constraint firstItem="fSX-gR-gx6" firstAttribute="top" secondItem="656-lo-kjs" secondAttribute="top" constant="18" id="QzJ-RN-4yB"/>
+                                    <constraint firstAttribute="trailing" secondItem="byS-9I-GVv" secondAttribute="centerX" multiplier="5:1" id="2dJ-N7-8gs"/>
+                                    <constraint firstItem="byS-9I-GVv" firstAttribute="centerY" secondItem="656-lo-kjs" secondAttribute="centerY" id="BVm-Fh-GN7"/>
+                                    <constraint firstItem="fSX-gR-gx6" firstAttribute="centerY" secondItem="656-lo-kjs" secondAttribute="centerY" id="U3X-qk-nfa"/>
+                                    <constraint firstItem="gvr-rh-wi5" firstAttribute="centerY" secondItem="656-lo-kjs" secondAttribute="centerY" id="cez-0e-iK3"/>
                                     <constraint firstAttribute="height" constant="80" id="con-R6-Gh2"/>
-                                    <constraint firstAttribute="trailing" secondItem="fSX-gR-gx6" secondAttribute="trailing" id="hsB-3I-E4g"/>
+                                    <constraint firstItem="nf0-6S-L3W" firstAttribute="centerY" secondItem="656-lo-kjs" secondAttribute="centerY" id="nte-8H-gn8"/>
+                                    <constraint firstAttribute="trailing" secondItem="fSX-gR-gx6" secondAttribute="centerX" multiplier="5:4" id="szw-CE-2Oe"/>
+                                    <constraint firstAttribute="trailing" secondItem="gvr-rh-wi5" secondAttribute="centerX" multiplier="5:3" id="vHF-3b-sXJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="nf0-6S-L3W" secondAttribute="centerX" multiplier="5:2" id="vWu-Oe-oz2"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pIw-Re-PTP">
@@ -238,6 +251,9 @@
                             <constraint firstItem="jJv-85-Ak2" firstAttribute="trailing" secondItem="Jcz-pR-M8s" secondAttribute="trailingMargin" id="wOT-Iz-9hq"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="versionLabel" destination="Xtu-Sc-R8f" id="Hn5-dl-pdb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1xB-iG-tQX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
