@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>JordanMeme</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -12,47 +14,63 @@
 	<string>6.0</string>
 	<key>CFBundleName</key>
 	<string>$(PRODUCT_NAME)</string>
-	<key>CFBundleDisplayName</key>
-	<string>JordanMeme</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>1.0.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>3</string>
+	<key>Fabric</key>
+	<dict>
+		<key>APIKey</key>
+		<string>2562e5594f3c583624c29c6db146c9e585d7d2f2</string>
+		<key>Kits</key>
+		<array>
+			<dict>
+				<key>KitInfo</key>
+				<dict/>
+				<key>KitName</key>
+				<string>Answers</string>
+			</dict>
+			<dict>
+				<key>KitInfo</key>
+				<dict/>
+				<key>KitName</key>
+				<string>Crashlytics</string>
+			</dict>
+		</array>
+	</dict>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIApplicationShortcutItems</key>
 	<array>
 		<dict>
-			<key>UIApplicationShortcutItemType</key>
-			<string>com.okun.JordanHeadMeme.choosePhoto</string>
-			<key>UIApplicationShortcutItemTitle</key>
-			<string>Choose Photo</string>
 			<key>UIApplicationShortcutItemIconFile</key>
 			<string>photoQuickAction</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Choose Photo</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>com.okun.JordanHeadMeme.choosePhoto</string>
 		</dict>
 		<dict>
-			<key>UIApplicationShortcutItemType</key>
-			<string>com.okun.JordanHeadMeme.takeSelfie</string>
-			<key>UIApplicationShortcutItemTitle</key>
-			<string>Take Selfie</string>
 			<key>UIApplicationShortcutItemIconFile</key>
 			<string>selfieQuickAction</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Take Selfie</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>com.okun.JordanHeadMeme.takeSelfie</string>
 		</dict>
 		<dict>
-			<key>UIApplicationShortcutItemType</key>
-			<string>com.okun.JordanHeadMeme.takePhoto</string>
-			<key>UIApplicationShortcutItemTitle</key>
-			<string>Take Photo</string>
 			<key>UIApplicationShortcutItemIconFile</key>
 			<string>cameraQuickAction</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Take Photo</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>com.okun.JordanHeadMeme.takePhoto</string>
 		</dict>
 	</array>
-	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -72,5 +90,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 </dict>
 </plist>

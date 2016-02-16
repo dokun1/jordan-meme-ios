@@ -9,6 +9,7 @@
 import UIKit
 import QuartzCore
 import SVProgressHUD
+import Crashlytics
 
 protocol ImageEditingViewControllerDelegate: class {
     func controllerDidFinishWithImage(controller: ImageEditingViewController, image: UIImage)
@@ -89,6 +90,7 @@ class ImageEditingViewController: UIViewController, UIGestureRecognizerDelegate,
     
     func arrangeJordanHeads() {
         let results = ImageProcessor.processImage(correctedImage)
+        Answers.logCustomEventWithName("Heads Generated", customAttributes:["Count":(results?.count)!])
         for head in results! {
             let headView = getImageViewForHead(head)
             headView.tag = head.id
@@ -290,6 +292,7 @@ class ImageEditingViewController: UIViewController, UIGestureRecognizerDelegate,
     }
     
     @IBAction func saveButtonTapped() {
+        Answers.logCustomEventWithName("Photo Saved", customAttributes: nil)
         setAllButtonsEnabled(false)
         SVProgressHUD.showWithStatus("Saving image...")
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) { () -> Void in
@@ -303,6 +306,7 @@ class ImageEditingViewController: UIViewController, UIGestureRecognizerDelegate,
     }
     
     @IBAction func shareButtonTapped() {
+        Answers.logCustomEventWithName("Share Button Tapped", customAttributes: nil)
         setAllButtonsEnabled(false)
         SVProgressHUD.showWithStatus("Preparing image...")
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) { () -> Void in
@@ -311,6 +315,9 @@ class ImageEditingViewController: UIViewController, UIGestureRecognizerDelegate,
                 SVProgressHUD.dismiss()
                 if let popover = activityViewController.popoverPresentationController {
                     popover.sourceView = self.shareButton
+                }
+                activityViewController.completionWithItemsHandler = {(activityType: String?, completed: Bool, returnedItems: [AnyObject]?, error: NSError?) in
+                    Answers.logCustomEventWithName("Photo Shared", customAttributes: ["ShareType":activityType!, "Completed":completed])
                 }
                 self.presentViewController(activityViewController, animated: true, completion: nil)
                 self.setAllButtonsEnabled(true)

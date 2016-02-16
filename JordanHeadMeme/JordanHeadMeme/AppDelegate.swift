@@ -8,6 +8,8 @@
 
 import UIKit
 import SVProgressHUD
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,13 +19,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        SVProgressHUD.setDefaultStyle(.Dark)
+        SVProgressHUD.setBackgroundColor(UIColor.colorSchemeTwo())
+        SVProgressHUD.setForegroundColor(UIColor.colorSchemeOne())
         application.statusBarHidden = true
         var performShortcutDelegate = true
         if let shortcutItem = launchOptions?[UIApplicationLaunchOptionsShortcutItemKey] as? UIApplicationShortcutItem {
             self.shortcutItem = shortcutItem
             performShortcutDelegate = false
         }
+        Fabric.with([Answers.self, Crashlytics.self])
         return performShortcutDelegate
     }
     
@@ -35,10 +39,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var succeeded = true
         let mainViewController = self.window?.rootViewController as! ViewController
         if shortcutItem.type.containsString("takeSelfie") {
+            Answers.logCustomEventWithName("Shortcut Used", customAttributes: ["Method":"Take Selfie"])
             mainViewController.takeSelfieTapped()
         } else if shortcutItem.type.containsString("choosePhoto") {
+            Answers.logCustomEventWithName("Shortcut Used", customAttributes: ["Method":"Choose Photo"])
             mainViewController.choosePhotoTapped()
         } else if shortcutItem.type.containsString("takePhoto") {
+            Answers.logCustomEventWithName("Shortcut Used", customAttributes: ["Method":"Take Photo"])
             mainViewController.takePhotoTapped()
         } else {
             succeeded = false
