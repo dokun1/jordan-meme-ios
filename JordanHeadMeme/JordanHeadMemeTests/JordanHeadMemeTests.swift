@@ -105,15 +105,15 @@ class JordanHeadMemeTests: XCTestCase {
     }
     
     func testAppliedFaceHasGreaterOrEqualSizeThanDetectedFace() {
-        
+        // help me write this please
     }
     
     func testAppliedFaceHasSameEyeLevelAsDetectedFace() {
-        
+        // help me write this please
     }
     
     func testAppliedFaceHasSameMouthLevelAsDetectedFace() {
-        
+        // help me write this please   
     }
     
     func testAppliedFaceIsFacingLeftOnLeftFacingFace() {

@@ -13,12 +13,37 @@ import SVProgressHUD
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var shortcutItem: UIApplicationShortcutItem?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         SVProgressHUD.setDefaultStyle(.Dark)
-        return true
+        application.statusBarHidden = true
+        var performShortcutDelegate = true
+        if let shortcutItem = launchOptions?[UIApplicationLaunchOptionsShortcutItemKey] as? UIApplicationShortcutItem {
+            self.shortcutItem = shortcutItem
+            performShortcutDelegate = false
+        }
+        return performShortcutDelegate
+    }
+    
+    func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: (Bool) -> Void) {
+        completionHandler(handleShortcut(shortcutItem))
+    }
+    
+    func handleShortcut( shortcutItem:UIApplicationShortcutItem ) -> Bool {
+        var succeeded = true
+        let mainViewController = self.window?.rootViewController as! ViewController
+        if shortcutItem.type.containsString("takeSelfie") {
+            mainViewController.takeSelfieTapped()
+        } else if shortcutItem.type.containsString("choosePhoto") {
+            mainViewController.choosePhotoTapped()
+        } else if shortcutItem.type.containsString("takePhoto") {
+            mainViewController.takePhotoTapped()
+        } else {
+            succeeded = false
+        }
+        return succeeded
     }
 
     func applicationWillResignActive(application: UIApplication) {
