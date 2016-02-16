@@ -37,6 +37,6 @@ This is what the still image looks like:
 ## Example
 
 ### Before
-![beforeImage](https://raw.githubusercontent.com/dokun1/jordan-meme-ios/master/JordanHeadMeme/before.png)
+![beforeImage](https://raw.githubusercontent.com/dokun1/jordan-meme-ios/master/JordanHeadMeme/before.jpg)
 ### After
-![afterImage](https://raw.githubusercontent.com/dokun1/jordan-meme-ios/master/JordanHeadMeme/after.png)
+![afterImage](https://raw.githubusercontent.com/dokun1/jordan-meme-ios/master/JordanHeadMeme/after.jpg)
