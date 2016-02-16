@@ -11,9 +11,18 @@ import SVProgressHUD
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ImageEditingViewControllerDelegate {
     
+    // MARK: IBActions
+    
     @IBAction func takePhotoTapped() {
         let picker = UIImagePickerController.init()
         picker.sourceType = .Camera
+        presentPicker(picker)
+    }
+    
+    @IBAction func takeSelfieTapped() {
+        let picker = UIImagePickerController.init()
+        picker.sourceType = .Camera
+        picker.cameraDevice = .Front
         presentPicker(picker)
     }
     

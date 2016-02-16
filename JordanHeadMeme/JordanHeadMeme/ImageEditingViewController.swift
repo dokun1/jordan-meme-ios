@@ -18,8 +18,10 @@ protocol ImageEditingViewControllerDelegate: class {
 class ImageEditingViewController: UIViewController, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     weak var delegate: ImageEditingViewControllerDelegate?
     @IBOutlet weak var scrollView: UIScrollView!
-    
-    
+    @IBOutlet weak var shareButton: UIButton!
+    @IBOutlet weak var doneButton: UIButton!
+    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var saveButton: UIButton!
 
     var uneditedImage: UIImage!
     var correctedImage: UIImage!
@@ -27,22 +29,20 @@ class ImageEditingViewController: UIViewController, UIGestureRecognizerDelegate,
     
     var headViews: [UIImageView] = [UIImageView]()
     var generatedHeads: [JordanHead] = [JordanHead]()
+    var hasMadeImage = false
+    var removingHead = false
     
     // MARK: override methods
     
     override func viewDidLoad() {
-        SVProgressHUD.showWithStatus("Applying heads...")
-        correctedImage = uneditedImage.fixOrientation
-        imageView = UIImageView.init(image: correctedImage)
-        imageView.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))
-        imageView.frame = CGRectMake(0, 0, correctedImage.size.width, correctedImage.size.height)
-        imageView.center = self.view.center
-        imageView.userInteractionEnabled = true
-        imageView.contentMode = .ScaleAspectFit
+        loadImage()
     }
     
     override func viewDidAppear(animated: Bool) {
-        arrangeJordanHeads()
+        if hasMadeImage == false {
+            arrangeJordanHeads()
+            hasMadeImage = true
+        }
     }
     
     // MARK: UIScrollViewDelegate Methods
@@ -76,6 +76,17 @@ class ImageEditingViewController: UIViewController, UIGestureRecognizerDelegate,
     
     // MARK: Image processing methods
     
+    func loadImage() {
+        SVProgressHUD.showWithStatus("Applying heads...")
+        correctedImage = uneditedImage.fixOrientation
+        imageView = UIImageView.init(image: correctedImage)
+        imageView.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))
+        imageView.frame = CGRectMake(0, 0, correctedImage.size.width, correctedImage.size.height)
+        imageView.center = self.view.center
+        imageView.userInteractionEnabled = true
+        imageView.contentMode = .ScaleAspectFit
+    }
+    
     func arrangeJordanHeads() {
         let results = ImageProcessor.processImage(correctedImage)
         for head in results! {
@@ -97,10 +108,11 @@ class ImageEditingViewController: UIViewController, UIGestureRecognizerDelegate,
         }
         scrollView.addSubview(imageView)
         scrollView.sendSubviewToBack(imageView)
+        self.view.sendSubviewToBack(scrollView)
         addEntirePhotoGestureRecognizers()
     }
     
-    func getImageViewForHead(head: JordanHead) -> UIImageView {
+    func getImageViewForHead(head: JordanHead) -> JordanHeadImageView {
         let jordanHeadImage = JordanHeadImageView.init(head: head)
         jordanHeadImage.frame = head.rect
         jordanHeadImage.contentMode = .ScaleAspectFit
@@ -117,6 +129,39 @@ class ImageEditingViewController: UIViewController, UIGestureRecognizerDelegate,
     }
     
     // MARK: UI Drawing Methods
+    
+    func addNewHead(rect: CGRect) {
+        setAllButtonsEnabled(false)
+        var highestID = 0
+        for head in generatedHeads {
+            highestID = max(highestID, head.id)
+        }
+        let newHead = JordanHead()
+        newHead.rect = rect
+        newHead.facingRight = true
+        newHead.id = highestID + 1
+        let newHeadView = getImageViewForHead(newHead)
+        newHeadView.tag = newHead.id
+        addGestureRecognizers(newHeadView)
+        imageView.addSubview(newHeadView)
+        headViews.append(newHeadView)
+        generatedHeads.append(newHead)
+        scrollView.setZoomScale(scrollView.minimumZoomScale, animated: true)
+        setAllButtonsEnabled(true)
+    }
+    
+    func makeHeadDisappear(head: JordanHeadImageView) {
+        if removingHead == false {
+            removingHead = true
+            UIView.animateWithDuration(0.3, animations: {
+                head.alpha = 0
+                }, completion: {
+                    (value: Bool) in
+                    head.removeFromSuperview()
+                    self.removingHead = false
+            })
+        }
+    }
     
     func addGestureRecognizers(head: UIImageView) {
         let panner = UIPanGestureRecognizer.init(target: self, action: Selector("panGestureActivated:"))
@@ -156,11 +201,15 @@ class ImageEditingViewController: UIViewController, UIGestureRecognizerDelegate,
     }
     
     func panGestureActivated(recognizer: UIPanGestureRecognizer) {
-        let translation = recognizer.translationInView(self.imageView)
-        if let view = recognizer.view {
-            view.center = CGPointMake(view.center.x + translation.x, view.center.y + translation.y)
+        if (recognizer.velocityInView(imageView).y > 12000 || recognizer.velocityInView(imageView).y < -12000) && recognizer.view is JordanHeadImageView {
+            makeHeadDisappear(recognizer.view as! JordanHeadImageView)
+        } else {
+            let translation = recognizer.translationInView(self.imageView)
+            if let view = recognizer.view {
+                view.center = CGPointMake(view.center.x + translation.x, view.center.y + translation.y)
+            }
+            recognizer.setTranslation(CGPointZero, inView: self.view)
         }
-        recognizer.setTranslation(CGPointZero, inView: self.view)
     }
     
     func doubleTapGestureActivated(recognizer: UITapGestureRecognizer) {
@@ -228,23 +277,48 @@ class ImageEditingViewController: UIViewController, UIGestureRecognizerDelegate,
     
     // MARK: IBActions
     
+    func setAllButtonsEnabled(enabled: Bool) {
+        shareButton.enabled = enabled
+        saveButton.enabled = enabled
+        addButton.enabled = enabled
+        doneButton.enabled = enabled
+    }
+    
     @IBAction func doneButtonClicked() {
+        setAllButtonsEnabled(false)
         delegate?.controllerDidFinishWithImage(self, image: imageView.image!)
     }
     
-    @IBAction func cancelButtonClicked() {
-        delegate?.controllerDidCancel(self)
-    }
-    
     @IBAction func saveButtonTapped() {
+        setAllButtonsEnabled(false)
         SVProgressHUD.showWithStatus("Saving image...")
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) { () -> Void in
             let newImage = self.imageView.convertToImage(self.correctedImage.size)
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 UIImageWriteToSavedPhotosAlbum(newImage, nil, nil, nil)
                 SVProgressHUD.dismiss()
-                self.self.delegate?.controllerDidCancel(self)
+                self.setAllButtonsEnabled(true)
             })
         }
+    }
+    
+    @IBAction func shareButtonTapped() {
+        setAllButtonsEnabled(false)
+        SVProgressHUD.showWithStatus("Preparing image...")
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) { () -> Void in
+            let activityViewController = UIActivityViewController(activityItems: [self.imageView.convertToImage(self.correctedImage.size)], applicationActivities: nil)
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                SVProgressHUD.dismiss()
+                if let popover = activityViewController.popoverPresentationController {
+                    popover.sourceView = self.shareButton
+                }
+                self.presentViewController(activityViewController, animated: true, completion: nil)
+                self.setAllButtonsEnabled(true)
+            })
+        }
+    }
+    
+    @IBAction func addButtonTapped() {
+        addNewHead(CGRectMake(10, 10, correctedImage.size.width / 5, correctedImage.size.height / 5))
     }
 }
