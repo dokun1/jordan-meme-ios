@@ -317,7 +317,9 @@ class ImageEditingViewController: UIViewController, UIGestureRecognizerDelegate,
                     popover.sourceView = self.shareButton
                 }
                 activityViewController.completionWithItemsHandler = {(activityType: String?, completed: Bool, returnedItems: [AnyObject]?, error: NSError?) in
-                    Answers.logCustomEventWithName("Photo Shared", customAttributes: ["ShareType":activityType!, "Completed":completed])
+                    if completed == true {
+                        Answers.logCustomEventWithName("Photo Shared", customAttributes: ["ShareType":activityType!, "Completed":completed])
+                    }
                 }
                 self.presentViewController(activityViewController, animated: true, completion: nil)
                 self.setAllButtonsEnabled(true)
