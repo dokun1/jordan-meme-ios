@@ -17,20 +17,24 @@ This is what the still image looks like:
 * I am open sourcing it in the hope that people will contribute to making it something release-able.
  
 
-## Todo List (Contributors, look here!)
+## Done in `v1.0.0`
 
 - [x] use full resolution image on image view ([@dokun1](https://github.com/dokun1))
 - [x] unit test suite ([@dokun1](https://github.com/dokun1))
 - [x] flick up to get rid of head ([@dokun1](https://github.com/dokun1))
 - [x] a plus button to add head in middle for missed heads ([@dokun1](https://github.com/dokun1))
-- [ ] 3D touch to add head in specific place (in progress - [@dokun1](https://github.com/dokun1))
 - [x] figure out why double tapping isn't working properly ([@dokun1](https://github.com/dokun1))
 - [x] error message to display if no heads detected ([@dokun1](https://github.com/dokun1))
 - [x] color scheme ([@dokun1](https://github.com/dokun1))
-- [ ] UI instructions on editing screen
 - [x] app icon ([@dokun1](https://github.com/dokun1))
 - [x] save to camera roll function ([@dokun1](https://github.com/dokun1))
 - [x] share to social media function ([@dokun1](https://github.com/dokun1))
+
+## Todo for `v1.0.1`
+
+- [ ] UI instructions on editing screen
+- [ ] 3D touch to add head in specific place
+- [ ] Video previews for App Store
 
 ## Example
 
