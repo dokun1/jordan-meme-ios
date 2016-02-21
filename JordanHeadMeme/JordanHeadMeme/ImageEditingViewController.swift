@@ -123,6 +123,8 @@ class ImageEditingViewController: UIViewController, UIGestureRecognizerDelegate,
             if head.faceFeature.rightEyePosition.y > head.faceFeature.leftEyePosition.y {
                 jordanHeadImage.image = UIImage.init(named: "jordanHeadInverted.png")
                 head.facingRight = false
+            } else {
+                head.facingRight = true
             }
         }
         jordanHeadImage.transform = CGAffineTransformMakeRotation(CGFloat(head.faceFeature.faceAngle * Float(M_PI/180)))
