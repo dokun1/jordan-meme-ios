@@ -85,6 +85,13 @@ extension CIFaceFeature {
     }
 }
 
+extension UIApplication {
+    var isDebugMode: Bool {
+        let dictionary = NSProcessInfo.processInfo().environment
+        return dictionary["DEBUGMODE"] != nil
+    }
+}
+
 extension UIView {
     func convertToImage(imageSize: CGSize) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(imageSize, false, 0.0)

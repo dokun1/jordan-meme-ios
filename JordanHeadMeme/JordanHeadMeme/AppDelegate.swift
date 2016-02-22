@@ -39,13 +39,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var succeeded = true
         let mainViewController = self.window?.rootViewController as! ViewController
         if shortcutItem.type.containsString("takeSelfie") {
-            Answers.logCustomEventWithName("Shortcut Used", customAttributes: ["Method":"Take Selfie"])
+            Analytics.logCustomEventWithName("Shortcut Used", customAttributes: ["Method":"Take Selfie"])
             mainViewController.takeSelfieTapped()
         } else if shortcutItem.type.containsString("choosePhoto") {
-            Answers.logCustomEventWithName("Shortcut Used", customAttributes: ["Method":"Choose Photo"])
+            Analytics.logCustomEventWithName("Shortcut Used", customAttributes: ["Method":"Choose Photo"])
             mainViewController.choosePhotoTapped()
         } else if shortcutItem.type.containsString("takePhoto") {
-            Answers.logCustomEventWithName("Shortcut Used", customAttributes: ["Method":"Take Photo"])
+            Analytics.logCustomEventWithName("Shortcut Used", customAttributes: ["Method":"Take Photo"])
             mainViewController.takePhotoTapped()
         } else {
             succeeded = false

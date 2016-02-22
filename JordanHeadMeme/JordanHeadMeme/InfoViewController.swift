@@ -17,41 +17,42 @@ class InfoViewController: UIViewController {
         super.viewWillAppear(animated)
         if let version = NSBundle.mainBundle().infoDictionary?["CFBundleShortVersionString"] as? String {
             if let build = NSBundle.mainBundle().infoDictionary?["CFBundleVersion"] as? String {
-                versionLabel.text = "© David Okun, 2016, v\(version)-\(build)"
+                let debug = UIApplication.sharedApplication().isDebugMode ? "DEBUG" : ""
+                versionLabel.text = "© David Okun, 2016, v\(version)-\(build)\(debug)"
             }
         }
     }
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        Answers.logCustomEventWithName("Info View Shown", customAttributes:nil)
+        Analytics.logCustomEventWithName("Info View Shown", customAttributes:nil)
     }
 
     @IBAction func githubIconTapped() {
-        Answers.logCustomEventWithName("Social Link Tapped", customAttributes:["Site Loaded":"Github"])
+        Analytics.logCustomEventWithName("Social Link Tapped", customAttributes:["Site Loaded":"Github"])
         let url = NSURL.init(string: "https://www.github.com/dokun1/jordan-meme-ios")
         UIApplication.sharedApplication().openURL(url!)
     }
     
     @IBAction func twitterIconTapped() {
-        Answers.logCustomEventWithName("Social Link Tapped", customAttributes:["Site Loaded":"Twitter"])
+        Analytics.logCustomEventWithName("Social Link Tapped", customAttributes:["Site Loaded":"Twitter"])
         let url = NSURL.init(string: "https://www.twitter.com/dokun24")
         UIApplication.sharedApplication().openURL(url!)
     }
     
     @IBAction func instagramIconTapped() {
-        Answers.logCustomEventWithName("Social Link Tapped", customAttributes:["Site Loaded":"Instagram"])
+        Analytics.logCustomEventWithName("Social Link Tapped", customAttributes:["Site Loaded":"Instagram"])
         let url = NSURL.init(string: "https://www.instagram.com/dokun1")
         UIApplication.sharedApplication().openURL(url!)
     }
     
     @IBAction func internetIconTapped() {
-        Answers.logCustomEventWithName("Social Link Tapped", customAttributes:["Site Loaded":"Website"])
+        Analytics.logCustomEventWithName("Social Link Tapped", customAttributes:["Site Loaded":"Website"])
         let url = NSURL.init(string: "http://okun.io")
         UIApplication.sharedApplication().openURL(url!)
     }
     
     @IBAction func reviewButtonTapped() {
-        Answers.logCustomEventWithName("Social Link Tapped", customAttributes:["Site Loaded":"Review"])
+        Analytics.logCustomEventWithName("Social Link Tapped", customAttributes:["Site Loaded":"Review"])
         let url = NSURL.init(string: "itms-apps://itunes.apple.com/app/id1084796562")
         UIApplication.sharedApplication().openURL(url!)
     }
