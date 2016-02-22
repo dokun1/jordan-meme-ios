@@ -27,7 +27,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.shortcutItem = shortcutItem
             performShortcutDelegate = false
         }
-        Fabric.with([Answers.self, Crashlytics.self])
+        if UIApplication.sharedApplication().isDebugMode {
+            print("APP LOADED IN DEBUG MODE")
+        } else {
+            Fabric.with([Answers.self, Crashlytics.self])
+        }
         return performShortcutDelegate
     }
     
