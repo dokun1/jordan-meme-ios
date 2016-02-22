@@ -15,7 +15,10 @@ import Crashlytics
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var shortcutItem: UIApplicationShortcutItem?
+    @available(iOS 9.0, *)
+    lazy var shortcutItem: UIApplicationShortcutItem? = {
+        return nil
+    }()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
@@ -23,9 +26,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SVProgressHUD.setForegroundColor(UIColor.colorSchemeOne())
         application.statusBarHidden = true
         var performShortcutDelegate = true
-        if let shortcutItem = launchOptions?[UIApplicationLaunchOptionsShortcutItemKey] as? UIApplicationShortcutItem {
-            self.shortcutItem = shortcutItem
-            performShortcutDelegate = false
+        if #available(iOS 9.0, *) {
+            if let shortcutItem = launchOptions?[UIApplicationLaunchOptionsShortcutItemKey] as? UIApplicationShortcutItem {
+                self.shortcutItem = shortcutItem
+                performShortcutDelegate = false
+            }
         }
         if UIApplication.sharedApplication().isDebugMode {
             print("APP LOADED IN DEBUG MODE")
@@ -35,10 +40,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return performShortcutDelegate
     }
     
+    @available(iOS 9.0, *)
     func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: (Bool) -> Void) {
         completionHandler(handleShortcut(shortcutItem))
     }
     
+    @available(iOS 9.0, *)
     func handleShortcut( shortcutItem:UIApplicationShortcutItem ) -> Bool {
         var succeeded = true
         let mainViewController = self.window?.rootViewController as! ViewController
