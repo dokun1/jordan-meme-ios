@@ -38,7 +38,7 @@
                ReferencedContainer = "container:JordanHeadMeme.xcodeproj">
             </BuildableReference>
          </TestableReference>
-        </Testables>
+      </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
@@ -71,6 +71,13 @@
             ReferencedContainer = "container:JordanHeadMeme.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "DEBUGMODE"
+            value = "1"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
