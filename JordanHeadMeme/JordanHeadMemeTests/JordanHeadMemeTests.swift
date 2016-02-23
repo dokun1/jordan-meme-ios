@@ -8,6 +8,7 @@
 
 import XCTest
 @testable import JordanHeadMeme
+@testable import Crashlytics
 
 class JordanHeadMemeTests: XCTestCase {
     
@@ -105,15 +106,48 @@ class JordanHeadMemeTests: XCTestCase {
     }
     
     func testAppliedFaceHasGreaterOrEqualSizeThanDetectedFace() {
-        // help me write this please
+        let results = getAppliedFaces("oneFace")
+        XCTAssertNotNil(results, "Should return an initialized array")
+        if results == nil {
+            XCTFail("Unable to check results for nil array of returned faces")
+        } else {
+            let head = results?.first
+            let imageView = ImageProcessor.getImageViewForHead(head!)
+            XCTAssertTrue(imageView.bounds.size.width > head?.rect.size.width, "Image view should be wider than detected head")
+            XCTAssertTrue(imageView.bounds.size.height > head?.rect.size.height, "Image view should be longer than detected head")
+        }
     }
     
     func testAppliedFaceHasSameEyeLevelAsDetectedFace() {
-        // help me write this please
+        let results = getAppliedFaces("oneFace")
+        XCTAssertNotNil(results, "Should return an initialized array")
+        if results == nil {
+            XCTFail("Unable to check results for nil array of returned faces")
+        } else {
+            let head = results?.first
+            let imageView = ImageProcessor.getImageViewForHead(head!)
+            let bundle = NSBundle(forClass: self.dynamicType)
+            let path = bundle.pathForResource("oneFace", ofType: "jpg")
+            var newImage = UIImage.init(contentsOfFile: path!)
+            newImage = newImage?.drawRectangle(CGRectMake((head?.transformedLeftEyePosition.x)! - 10, (head?.transformedLeftEyePosition.y)! - 10, 20, 20), color: UIColor.blueColor())
+            XCTAssertEqualWithAccuracy((head?.faceFeature.leftEyePosition.x)!, imageView.leftEyePosition.x, accuracy: 10, "The x position of the left eye is not within a reasonable distance of the detected left eye in the photo")
+            XCTAssertEqualWithAccuracy((head?.faceFeature.leftEyePosition.y)!, imageView.leftEyePosition.y, accuracy: 10, "The x position of the left eye is not within a reasonable distance of the detected left eye in the photo")
+            XCTAssertEqualWithAccuracy((head?.faceFeature.rightEyePosition.x)!, imageView.rightEyePosition.x, accuracy: 10, "The x position of the left eye is not within a reasonable distance of the detected left eye in the photo")
+            XCTAssertEqualWithAccuracy((head?.faceFeature.rightEyePosition.y)!, imageView.rightEyePosition.y, accuracy: 10, "The x position of the left eye is not within a reasonable distance of the detected left eye in the photo")
+        }
     }
     
     func testAppliedFaceHasSameMouthLevelAsDetectedFace() {
-        // help me write this please   
+        let results = getAppliedFaces("oneFace")
+        XCTAssertNotNil(results, "Should return an initialized array")
+        if results == nil {
+            XCTFail("Unable to check results for nil array of returned faces")
+        } else {
+            let head = results?.first
+            let imageView = ImageProcessor.getImageViewForHead(head!)
+            XCTAssertEqualWithAccuracy((head?.faceFeature.mouthPosition.x)!, imageView.mouthCenterPosition.x, accuracy: 10, "The x position of the left eye is not within a reasonable distance of the detected left eye in the photo")
+            XCTAssertEqualWithAccuracy((head?.faceFeature.mouthPosition.y)!, imageView.mouthCenterPosition.y, accuracy: 10, "The x position of the left eye is not within a reasonable distance of the detected left eye in the photo")
+        }
     }
     
     func testAppliedFaceIsFacingLeftOnLeftFacingFace() {

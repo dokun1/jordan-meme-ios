@@ -34,6 +34,24 @@ class ImageProcessor: NSObject {
         return generatedHeads
     }
     
+    class func getImageViewForHead(head: JordanHead) -> JordanHeadImageView {
+        let jordanHeadImage = JordanHeadImageView.init(head: head)
+        jordanHeadImage.frame = head.rect
+        jordanHeadImage.contentMode = .ScaleAspectFit
+        jordanHeadImage.backgroundColor = UIColor.clearColor()
+        if head.faceFeature.hasRightEyePosition && head.faceFeature.hasLeftEyePosition {
+            if head.faceFeature.rightEyePosition.y > head.faceFeature.leftEyePosition.y {
+                jordanHeadImage.image = UIImage.init(named: "jordanHeadInverted.png")
+                head.facingRight = false
+            } else {
+                head.facingRight = true
+            }
+        }
+        jordanHeadImage.transform = CGAffineTransformMakeRotation(CGFloat(head.faceFeature.faceAngle * Float(M_PI/180)))
+        jordanHeadImage.userInteractionEnabled = true
+        return jordanHeadImage
+    }
+    
     // MARK : Private processing functions
     
     private class func getFaceDetector() -> CIDetector {
@@ -64,9 +82,14 @@ class ImageProcessor: NSObject {
     }
     
     private class func getRectForDrawingHead(detectedFace: CIFaceFeature, image: UIImage) -> CGRect {
+        var newImage = image
         var transform = CGAffineTransformMakeScale(1, -1)
         transform = CGAffineTransformTranslate(transform, 0, -image.size.height)
         var faceRect = CGRectApplyAffineTransform(detectedFace.bounds, transform)
+        newImage = newImage.drawRectangle(faceRect, color: UIColor.redColor())
+        newImage = newImage.drawRectangle(CGRectMake(detectedFace.leftEyePosition.x - 10, detectedFace.leftEyePosition.y - 10, 20, 20), color: UIColor.blueColor())
+        newImage = newImage.drawRectangle(CGRectMake(detectedFace.rightEyePosition.x - 10, detectedFace.rightEyePosition.y - 10, 20, 20), color: UIColor.blueColor())
+        newImage = newImage.drawRectangle(CGRectMake(detectedFace.mouthPosition.x - 10, detectedFace.mouthPosition.y - 10, 20, 20), color: UIColor.blueColor())
         if detectedFace.hasLeftEyePosition && detectedFace.hasRightEyePosition {
             let higherPoint = (detectedFace.leftEyePosition.y > detectedFace.rightEyePosition.y ? detectedFace.leftEyePosition : detectedFace.rightEyePosition)
             let alteredPoint  = CGPointApplyAffineTransform(higherPoint, transform)
@@ -74,6 +97,11 @@ class ImageProcessor: NSObject {
             let distance = 3.14 * abs(centerPoint.y - alteredPoint.y)
             let alteredDistance = (faceRect.origin.y + faceRect.size.height) - (alteredPoint.y - distance)
             faceRect = CGRectMake(faceRect.origin.x, alteredPoint.y - distance, faceRect.size.width, alteredDistance)
+            newImage = newImage.drawRectangle(CGRectMake(detectedFace.leftEyePosition.x - 10, detectedFace.leftEyePosition.y - 10, 20, 20), color: UIColor.blueColor())
+            newImage = newImage.drawRectangle(CGRectMake(detectedFace.rightEyePosition.x - 10, detectedFace.rightEyePosition.y - 10, 20, 20), color: UIColor.blueColor())
+            newImage = newImage.drawRectangle(CGRectMake(detectedFace.mouthPosition.x - 10, detectedFace.mouthPosition.y - 10, 20, 20), color: UIColor.blueColor())
+
+            print("done")
         }
         return faceRect
     }

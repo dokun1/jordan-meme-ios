@@ -92,7 +92,7 @@ class ImageEditingViewController: UIViewController, UIGestureRecognizerDelegate,
         let results = ImageProcessor.processImage(correctedImage)
         Analytics.logCustomEventWithName("Heads Generated", customAttributes:["Count":(results?.count)!])
         for head in results! {
-            let headView = getImageViewForHead(head)
+            let headView = ImageProcessor.getImageViewForHead(head)
             headView.tag = head.id
             addGestureRecognizers(headView)
             imageView.addSubview(headView)
@@ -114,24 +114,6 @@ class ImageEditingViewController: UIViewController, UIGestureRecognizerDelegate,
         addEntirePhotoGestureRecognizers()
     }
     
-    func getImageViewForHead(head: JordanHead) -> JordanHeadImageView {
-        let jordanHeadImage = JordanHeadImageView.init(head: head)
-        jordanHeadImage.frame = head.rect
-        jordanHeadImage.contentMode = .ScaleAspectFit
-        jordanHeadImage.backgroundColor = UIColor.clearColor()
-        if head.faceFeature.hasRightEyePosition && head.faceFeature.hasLeftEyePosition {
-            if head.faceFeature.rightEyePosition.y > head.faceFeature.leftEyePosition.y {
-                jordanHeadImage.image = UIImage.init(named: "jordanHeadInverted.png")
-                head.facingRight = false
-            } else {
-                head.facingRight = true
-            }
-        }
-        jordanHeadImage.transform = CGAffineTransformMakeRotation(CGFloat(head.faceFeature.faceAngle * Float(M_PI/180)))
-        jordanHeadImage.userInteractionEnabled = true
-        return jordanHeadImage
-    }
-    
     // MARK: UI Drawing Methods
     
     func addNewHead(rect: CGRect) {
@@ -144,7 +126,7 @@ class ImageEditingViewController: UIViewController, UIGestureRecognizerDelegate,
         newHead.rect = rect
         newHead.facingRight = true
         newHead.id = highestID + 1
-        let newHeadView = getImageViewForHead(newHead)
+        let newHeadView = ImageProcessor.getImageViewForHead(newHead)
         newHeadView.tag = newHead.id
         addGestureRecognizers(newHeadView)
         imageView.addSubview(newHeadView)
