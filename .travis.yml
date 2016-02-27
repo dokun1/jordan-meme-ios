@@ -6,7 +6,8 @@ cache: cocoapods
 # xcode_sdk: iphonesimulator9.2
 podfile: JordanHeadMeme/Podfile
 before_install:
-  - rvm install ruby 2.2.0p0
+  - rvm install current
+  - rvm use current
   - gem install cocoapods -v '0.39.0'
 script:
   - xctool clean test -scheme JordanHeadMemeDebug -workspace JordanHeadMeme/JordanHeadMeme.xcworkspace -sdk iphonesimulator9.2 -reporter pretty -destination "platform=iOS Simulator,name=iPhone 6,OS=9.2" ```
