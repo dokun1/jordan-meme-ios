@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -18,6 +19,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jordanHead" translatesAutoresizingMaskIntoConstraints="NO" id="Y5Q-4n-iRW">
+                                <rect key="frame" x="20" y="60" width="560" height="336"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="wjj-hL-4qM" appends="YES" id="CS0-2t-5Ll"/>
+                                    <outletCollection property="gestureRecognizers" destination="9WZ-Cd-sLJ" appends="YES" id="xBY-Wk-D6p"/>
+                                    <outletCollection property="gestureRecognizers" destination="KEK-eL-RwU" appends="YES" id="HwP-TD-NDi"/>
+                                </connections>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vPx-W6-5qY">
                                 <rect key="frame" x="0.0" y="542" width="600" height="58"/>
                                 <color key="backgroundColor" red="0.11764705882352941" green="0.082352941176470587" blue="0.16470588235294117" alpha="1" colorSpace="calibratedRGB"/>
@@ -60,9 +70,6 @@
                                     <action selector="takePhotoTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="cHk-ut-IbG"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jordanHead" translatesAutoresizingMaskIntoConstraints="NO" id="Y5Q-4n-iRW">
-                                <rect key="frame" x="20" y="60" width="560" height="336"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mkx-QT-6Ql">
                                 <rect key="frame" x="550" y="33" width="30" height="30"/>
                                 <constraints>
@@ -72,6 +79,17 @@
                                 <state key="normal" title="Button" image="infoIcon"/>
                                 <connections>
                                     <segue destination="weJ-FM-YGL" kind="presentation" id="IJP-qi-Ql6"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5yh-0F-7BB">
+                                <rect key="frame" x="20" y="33" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="LF6-0K-glJ"/>
+                                    <constraint firstAttribute="height" constant="30" id="Ryw-Wc-lVD"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="homeIcon"/>
+                                <connections>
+                                    <action selector="homeButtonTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="8Lp-e6-fv7"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -90,15 +108,36 @@
                             <constraint firstItem="io6-bE-14u" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="Twb-b9-oMi"/>
                             <constraint firstItem="Y5Q-4n-iRW" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="40" id="UW8-ce-boB"/>
                             <constraint firstItem="vPx-W6-5qY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="dF1-tp-skM"/>
+                            <constraint firstItem="5yh-0F-7BB" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="13" id="he6-84-dta"/>
                             <constraint firstItem="Mkx-QT-6Ql" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="13" id="hg6-WP-uIb"/>
                             <constraint firstItem="Y5Q-4n-iRW" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="sNZ-F1-8eX"/>
+                            <constraint firstItem="5yh-0F-7BB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="tvO-Mi-52d"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="demoHead" destination="Y5Q-4n-iRW" id="7SJ-iz-4g2"/>
                         <segue destination="VU7-1M-a8V" kind="presentation" identifier="editImageSegue" id="CAe-95-ZsY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <rotationGestureRecognizer id="wjj-hL-4qM">
+                    <connections>
+                        <action selector="rotationGestureActivated:" destination="BYZ-38-t0r" id="V3c-zZ-81W"/>
+                        <outlet property="delegate" destination="BYZ-38-t0r" id="e9k-ew-lyU"/>
+                    </connections>
+                </rotationGestureRecognizer>
+                <pinchGestureRecognizer id="9WZ-Cd-sLJ">
+                    <connections>
+                        <action selector="pinchGestureActivated:" destination="BYZ-38-t0r" id="3ZN-0N-f87"/>
+                        <outlet property="delegate" destination="BYZ-38-t0r" id="Uhs-qL-JyP"/>
+                    </connections>
+                </pinchGestureRecognizer>
+                <tapGestureRecognizer numberOfTapsRequired="2" id="KEK-eL-RwU">
+                    <connections>
+                        <action selector="doubleTapGestureActivated:" destination="BYZ-38-t0r" id="lAO-Wb-Xzs"/>
+                        <outlet property="delegate" destination="BYZ-38-t0r" id="QIS-Tx-NSm"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="600" y="490"/>
         </scene>
@@ -377,6 +416,7 @@
         <image name="addIcon" width="512" height="512"/>
         <image name="githubIcon" width="256" height="252"/>
         <image name="globeIcon" width="256" height="256"/>
+        <image name="homeIcon" width="512" height="512"/>
         <image name="infoIcon" width="512" height="512"/>
         <image name="instagramIcon" width="256" height="256"/>
         <image name="jordanHead" width="274" height="391"/>
