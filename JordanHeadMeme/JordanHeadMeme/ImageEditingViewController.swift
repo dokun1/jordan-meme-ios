@@ -90,7 +90,7 @@ class ImageEditingViewController: UIViewController, UIGestureRecognizerDelegate,
     
     func arrangeJordanHeads() {
         let results = ImageProcessor.processImage(correctedImage)
-        Analytics.logCustomEventWithName("Heads Generated", customAttributes:["Count":(results?.count)!])
+        Analytics.logCustomEventWithName("Heads Generated", customAttributes:["Count":(results?.count)!, "Head Count":(results?.count)!])
         for head in results! {
             let headView = getImageViewForHead(head)
             headView.tag = head.id
@@ -319,9 +319,7 @@ class ImageEditingViewController: UIViewController, UIGestureRecognizerDelegate,
                     popover.sourceView = self.shareButton
                 }
                 activityViewController.completionWithItemsHandler = {(activityType: String?, completed: Bool, returnedItems: [AnyObject]?, error: NSError?) in
-                    if completed == true {
                         Analytics.logCustomEventWithName("Photo Shared", customAttributes: ["ShareType":activityType!, "Completed":completed])
-                    }
                 }
                 self.presentViewController(activityViewController, animated: true, completion: nil)
                 self.setAllButtonsEnabled(true)
