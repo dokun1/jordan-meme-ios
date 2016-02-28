@@ -10,14 +10,11 @@ This is an app that lets you take any photo, whether it's from your camera or yo
 This is what the still image looks like:
 ![jordanImage](https://raw.githubusercontent.com/dokun1/jordan-meme-ios/master/JordanHeadMeme/JordanHeadMeme/Assets.xcassets/jordanHead.imageset/jordanHead.png)
 
-## Important Points
+## Contribution guide
 
-* I have had this idea for a while and I haven't had time to really act on it.
-* I will probably run out of time very shortly so...
-* I am open sourcing it in the hope that people will contribute to making it something release-able.
- 
+Check the issues list first. I am pretty vigilant about finding things and putting them there. Feel free to make improvements or suggestive changes anyway, as I would love to see what this ends up becoming.
 
-## Done in `v1.0.0`
+## Done in `v1.0.0` (February 16, 2016)
 
 - [x] use full resolution image on image view ([@dokun1](https://github.com/dokun1))
 - [x] unit test suite ([@dokun1](https://github.com/dokun1))
@@ -30,11 +27,16 @@ This is what the still image looks like:
 - [x] save to camera roll function ([@dokun1](https://github.com/dokun1))
 - [x] share to social media function ([@dokun1](https://github.com/dokun1))
 
-## Todo for `v1.0.1`
+## Done in `v1.0.1` (February 28, 2016)
 
-- [ ] UI instructions on editing screen
+- [x] UI instructions on main screen
+- [x] Fixed bug with double tapping head
+
+## Todo for `v1.1.0`
+
 - [ ] 3D touch to add head in specific place
 - [ ] Video previews for App Store
+- [ ] Improved head placement
 
 ## Example
 
