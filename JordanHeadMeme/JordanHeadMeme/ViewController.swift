@@ -11,7 +11,7 @@ import SVProgressHUD
 import Crashlytics
 import TSMessages
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ImageEditingViewControllerDelegate, UIGestureRecognizerDelegate {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ImageEditingViewControllerDelegate, UIGestureRecognizerDelegate, TSMessageViewProtocol {
     @IBOutlet weak var demoHead: UIImageView!
     var demoHeadFacingRight = true
     var demoHeadUnmodified = true
@@ -24,6 +24,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         if numberOfScreenAppearances == 10 {
             shamelesslyBegUserForAppStoreReview()
         }
+        TSMessage.setDelegate(self)
     }
     
     func shamelesslyBegUserForAppStoreReview() {
@@ -139,6 +140,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func showInstructions() {
         Analytics.logCustomEventWithName("Instructions Shown", customAttributes: nil)
+        TSMessage.addCustomDesignFromFileWithName("JordanHeadMemeMessageCustomization.json")
         TSMessage.showNotificationInViewController(self, title: "Play with the head!", subtitle: "Try pinch-zooming, rotating, or double tapping the head on the screen to change its appearance.", type: .Message, duration: 5.0, canBeDismissedByUser: true)
     }
     
@@ -162,6 +164,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             nextController.uneditedImage = sender as! UIImage
             nextController.delegate = self
         }
+    }
+    
+    // MARK: TSMessageDelegate Methods
+    
+    func customizeMessageView(messageView: TSMessageView!) {
+        messageView.alpha = 1
     }
     
     // MARK: ImageEditingViewControllerDelegate methods

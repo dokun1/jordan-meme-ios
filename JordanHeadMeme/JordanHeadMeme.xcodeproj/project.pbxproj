@@ -12,6 +12,7 @@
 		501A5F571C25E32D0070ECD6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501A5F561C25E32D0070ECD6 /* Extensions.swift */; };
 		501A5F5B1C25E9F00070ECD6 /* JordanHead.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501A5F5A1C25E9F00070ECD6 /* JordanHead.swift */; };
 		5031DEF31C24AA1E00473339 /* ImageEditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5031DEF21C24AA1E00473339 /* ImageEditingViewController.swift */; };
+		5071A7331C826CF300753BBE /* JordanHeadMemeMessageCustomization.json in Resources */ = {isa = PBXBuildFile; fileRef = 5071A7321C826CF300753BBE /* JordanHeadMemeMessageCustomization.json */; };
 		507C70061C24A4C900B8D890 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507C70051C24A4C900B8D890 /* AppDelegate.swift */; };
 		507C70081C24A4C900B8D890 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507C70071C24A4C900B8D890 /* ViewController.swift */; };
 		507C700B1C24A4C900B8D890 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 507C70091C24A4C900B8D890 /* Main.storyboard */; };
@@ -54,6 +55,7 @@
 		501A5F561C25E32D0070ECD6 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		501A5F5A1C25E9F00070ECD6 /* JordanHead.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JordanHead.swift; sourceTree = "<group>"; };
 		5031DEF21C24AA1E00473339 /* ImageEditingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageEditingViewController.swift; sourceTree = "<group>"; };
+		5071A7321C826CF300753BBE /* JordanHeadMemeMessageCustomization.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = JordanHeadMemeMessageCustomization.json; sourceTree = "<group>"; };
 		507C70021C24A4C900B8D890 /* JordanHeadMeme.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JordanHeadMeme.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		507C70051C24A4C900B8D890 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		507C70071C24A4C900B8D890 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				50D0C19D1C6904FE00DB8A51 /* ImageProcessor.swift */,
 				633478F11C7B3BF4004F11C1 /* Analytics.swift */,
 				501A5F561C25E32D0070ECD6 /* Extensions.swift */,
+				5071A7321C826CF300753BBE /* JordanHeadMemeMessageCustomization.json */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -303,6 +306,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				507C70101C24A4C900B8D890 /* LaunchScreen.storyboard in Resources */,
+				5071A7331C826CF300753BBE /* JordanHeadMemeMessageCustomization.json in Resources */,
 				507C700D1C24A4C900B8D890 /* Assets.xcassets in Resources */,
 				507C700B1C24A4C900B8D890 /* Main.storyboard in Resources */,
 			);
