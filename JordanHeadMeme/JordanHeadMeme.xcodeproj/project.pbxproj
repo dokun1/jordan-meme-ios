@@ -274,6 +274,7 @@
 				TargetAttributes = {
 					507C70011C24A4C900B8D890 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = RQ632LL2X3;
 					};
 					507C70151C24A4C900B8D890 = {
 						CreatedOnToolsVersion = 7.2;
@@ -539,14 +540,14 @@
 			baseConfigurationReference = BBEF34FFE6AFCDDFD3409F74 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: David Okun (RQ632LL2X3)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				INFOPLIST_FILE = JordanHeadMeme/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.okun.JordanHeadMeme;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "601ae08d-4bf4-4852-ae53-0fb57a224b7f";
 			};
 			name = Debug;
 		};
@@ -555,14 +556,14 @@
 			baseConfigurationReference = 62FF1E4695868853A6137486 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: David Okun (RQ632LL2X3)";
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				INFOPLIST_FILE = JordanHeadMeme/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.okun.JordanHeadMeme;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "601ae08d-4bf4-4852-ae53-0fb57a224b7f";
 			};
 			name = Release;
 		};
