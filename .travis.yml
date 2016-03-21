@@ -7,6 +7,6 @@ before_install:
   - rvm use current
   - gem install cocoapods -v '0.39.0'
 script:
-  - xctool clean test -scheme JordanHeadMemeDebug -workspace JordanHeadMeme/JordanHeadMeme.xcworkspace -sdk iphonesimulator9.2 -reporter pretty -destination "platform=iOS Simulator,name=iPhone 6,OS=9.2" GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES
+  - xctool clean test -scheme JordanHeadMemeDebug -workspace JordanHeadMeme/JordanHeadMeme.xcworkspace -sdk iphonesimulator -reporter pretty GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES
 after_success:
   - bash <(curl -s https://codecov.io/bash)
