@@ -4,8 +4,6 @@
 [![License](http://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/dokun1/firstRuleFireplace/blob/master/LICENSE)
 [![Build Status](https://travis-ci.org/dokun1/jordan-meme-ios.svg?branch=master)](https://travis-ci.org/dokun1/jordan-meme-ios)
 
-[![The NY Times](http://www.nytimes.com/2016/06/04/arts/crying-jordan-the-meme-that-just-wont-die.html?_r=0)
-
 ## About
 This is an app that lets you take any photo, whether it's from your camera or your saved photos, detect any and all faces on the photo, and then superimpose a Crying Michael Jordan head on top of it. It is really funny. The application and meme have been written about ([here](http://www.nytimes.com/2016/06/04/arts/crying-jordan-the-meme-that-just-wont-die.html?_r=0)) and ([here](https://google.com)).
 
