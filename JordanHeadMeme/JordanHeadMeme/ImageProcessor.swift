@@ -14,17 +14,17 @@ class ImageProcessor: NSObject {
     
     // MARK : Public processing functions
     
-    class func rectInImage(imageSize: CGSize) -> CGRect {
-        return CGRectNull
+    class func rectInImage(_ imageSize: CGSize) -> CGRect {
+        return CGRect.null
     }
 
-    class func processImage(image: UIImage) -> [JordanHead]?  {
-        let ciImage = CIImage(CGImage: image.CGImage!)
-        let results = getFaceDetector().featuresInImage(ciImage)
+    class func processImage(_ image: UIImage) -> [JordanHead]?  {
+        let ciImage = CIImage(cgImage: image.cgImage!)
+        let results = getFaceDetector().features(in: ciImage)
         var counter = 0
         var generatedHeads: [JordanHead] = [JordanHead]()
         for result in results {
-            counter++
+            counter += 1
             let face: CIFaceFeature = result as! CIFaceFeature
             if face.hasLeftEyePosition && face.hasRightEyePosition && face.hasMouthPosition {
                 let jordanHead = drawJordanHead(getRectForDrawingHead(face, image: image), feature: face, tag: counter)
@@ -37,25 +37,25 @@ class ImageProcessor: NSObject {
     // MARK : Private processing functions
     
     private class func getFaceDetector() -> CIDetector {
-        return CIDetector.init(ofType: CIDetectorTypeFace, context: nil, options: [CIDetectorAccuracy: CIDetectorAccuracyHigh])
+        return CIDetector.init(ofType: CIDetectorTypeFace, context: nil, options: [CIDetectorAccuracy: CIDetectorAccuracyHigh])!
     }
     
-    private class func drawJordanHead(drawRect: CGRect, feature: CIFaceFeature, tag: Int) -> JordanHead {
+    private class func drawJordanHead(_ drawRect: CGRect, feature: CIFaceFeature, tag: Int) -> JordanHead {
         let jordanHead = JordanHead()
         let jordanHeadImage = UIImageView.init(image: UIImage.init(named: "jordanHead.png"))
         jordanHeadImage.frame = drawRect
-        jordanHeadImage.contentMode = .ScaleAspectFit
-        jordanHeadImage.backgroundColor = UIColor.clearColor()
+        jordanHeadImage.contentMode = .scaleAspectFit
+        jordanHeadImage.backgroundColor = UIColor.clear()
         if feature.hasRightEyePosition && feature.hasLeftEyePosition {
             if feature.rightEyePosition.y > feature.leftEyePosition.y {
-                jordanHeadImage.transform = CGAffineTransformMakeScale(-1, 1)
+                jordanHeadImage.transform = CGAffineTransform(scaleX: -1, y: 1)
                 jordanHead.facingRight = true
             } else {
                 jordanHead.facingRight = false
             }
         }
-        jordanHeadImage.transform = CGAffineTransformMakeRotation(CGFloat(feature.faceAngle * Float(M_PI/180)))
-        jordanHeadImage.userInteractionEnabled = true
+        jordanHeadImage.transform = CGAffineTransform(rotationAngle: CGFloat(feature.faceAngle * Float(M_PI/180)))
+        jordanHeadImage.isUserInteractionEnabled = true
         jordanHeadImage.tag = tag
         jordanHead.id = tag
         jordanHead.faceFeature = feature
@@ -63,17 +63,17 @@ class ImageProcessor: NSObject {
         return jordanHead
     }
     
-    private class func getRectForDrawingHead(detectedFace: CIFaceFeature, image: UIImage) -> CGRect {
-        var transform = CGAffineTransformMakeScale(1, -1)
-        transform = CGAffineTransformTranslate(transform, 0, -image.size.height)
-        var faceRect = CGRectApplyAffineTransform(detectedFace.bounds, transform)
+    private class func getRectForDrawingHead(_ detectedFace: CIFaceFeature, image: UIImage) -> CGRect {
+        var transform = CGAffineTransform(scaleX: 1, y: -1)
+        transform = transform.translateBy(x: 0, y: -image.size.height)
+        var faceRect = detectedFace.bounds.apply(transform: transform)
         if detectedFace.hasLeftEyePosition && detectedFace.hasRightEyePosition {
             let higherPoint = (detectedFace.leftEyePosition.y > detectedFace.rightEyePosition.y ? detectedFace.leftEyePosition : detectedFace.rightEyePosition)
-            let alteredPoint  = CGPointApplyAffineTransform(higherPoint, transform)
+            let alteredPoint  = higherPoint.apply(transform: transform)
             let centerPoint = faceRect.rectCenter
             let distance = 3.14 * abs(centerPoint.y - alteredPoint.y)
             let alteredDistance = (faceRect.origin.y + faceRect.size.height) - (alteredPoint.y - distance)
-            faceRect = CGRectMake(faceRect.origin.x, alteredPoint.y - distance, faceRect.size.width, alteredDistance)
+            faceRect = CGRect(x: faceRect.origin.x, y: alteredPoint.y - distance, width: faceRect.size.width, height: alteredDistance)
         }
         return faceRect
     }

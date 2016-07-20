@@ -12,9 +12,9 @@ import QuartzCore
 
 extension String {
     var hexColor: UIColor {
-        let hex = self.stringByTrimmingCharactersInSet(NSCharacterSet.alphanumericCharacterSet().invertedSet)
+        let hex = self.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
         var int = UInt32()
-        NSScanner(string: hex).scanHexInt(&int)
+        Scanner(string: hex).scanHexInt32(&int)
         let a, r, g, b: UInt32
         switch hex.characters.count {
         case 3: // RGB (12-bit)
@@ -24,7 +24,7 @@ extension String {
         case 8: // ARGB (32-bit)
             (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
         default:
-            return UIColor.clearColor()
+            return UIColor.clear()
         }
         return UIColor(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
     }
@@ -61,7 +61,7 @@ extension CGRect {
     var rectCenter: CGPoint {
         let x = self.origin.x + (self.size.width / 2)
         let y = self.origin.y + (self.size.height / 2)
-        return CGPointMake(x, y)
+        return CGPoint(x: x, y: y)
     }
 }
 
@@ -70,13 +70,13 @@ extension CIFaceFeature {
         var center = self.bounds.rectCenter
         var numberOfEyesDetected = 0
         if self.hasRightEyePosition {
-            numberOfEyesDetected++
+            numberOfEyesDetected += 1
         }
         if self.hasLeftEyePosition {
-            numberOfEyesDetected++
+            numberOfEyesDetected += 1
         }
-        let eyeCenter = CGPointMake((self.leftEyePosition.x + self.rightEyePosition.x) / CGFloat(numberOfEyesDetected), (self.leftEyePosition.y + self.rightEyePosition.y) / CGFloat(numberOfEyesDetected))
-        if CGPointEqualToPoint(eyeCenter, CGPointZero) {
+        let eyeCenter = CGPoint(x: (self.leftEyePosition.x + self.rightEyePosition.x) / CGFloat(numberOfEyesDetected), y: (self.leftEyePosition.y + self.rightEyePosition.y) / CGFloat(numberOfEyesDetected))
+        if eyeCenter.equalTo(CGPoint.zero) {
             center.x = (center.x + eyeCenter.x * 3) / 4
             center.y = (center.y + eyeCenter.y * 3) / 4
         }
@@ -87,130 +87,144 @@ extension CIFaceFeature {
 
 extension UIApplication {
     var isDebugMode: Bool {
-        let dictionary = NSProcessInfo.processInfo().environment
+        let dictionary = ProcessInfo.processInfo.environment
         return dictionary["DEBUGMODE"] != nil
     }
 }
 
 extension UIView {
-    func convertToImage(imageSize: CGSize) -> UIImage {
+    func convertToImage(_ imageSize: CGSize) -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(imageSize, false, 0.0)
-        self.layer.renderInContext(UIGraphicsGetCurrentContext()!)
-        let newImage = UIImage.init(data: UIImageJPEGRepresentation(UIGraphicsGetImageFromCurrentImageContext(), 1.0)!)
-        UIGraphicsEndImageContext()
-        return newImage!
+        self.layer.render(in: UIGraphicsGetCurrentContext()!)
+        if let newImage = UIImage.init(data: UIImageJPEGRepresentation(UIGraphicsGetImageFromCurrentImageContext()!, 1.0)!) {
+            UIGraphicsEndImageContext()
+            return newImage
+        } else {
+            return nil
+        }        
     }
 }
 
 extension UIImage {
-    func drawRectangle(bounds: CGRect, color: UIColor) -> UIImage {
+    func drawRectangle(_ bounds: CGRect, color: UIColor) -> UIImage {
         UIGraphicsBeginImageContext(self.size)
-        self.drawAtPoint(CGPointZero)
-        let context = UIGraphicsGetCurrentContext()
-        CGContextSetLineWidth(context, 3)
-        color.setStroke()
-        CGContextStrokeRect(context, bounds)
-        let returnedImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return returnedImage
+        self.draw(at: CGPoint.zero)
+        if let context = UIGraphicsGetCurrentContext() {
+            context.setLineWidth(3)
+            color.setStroke()
+            context.stroke(bounds)
+            if let returnedImage = UIGraphicsGetImageFromCurrentImageContext() {
+                UIGraphicsEndImageContext()
+                return returnedImage
+            } else {
+                UIGraphicsEndImageContext()
+                return self
+            }
+        } else {
+            return self
+        }
     }
     
-    func resize(newSize: CGSize) -> UIImage {
+    func resize(_ newSize: CGSize) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
-        self.drawInRect(CGRectMake(0, 0, newSize.width, newSize.height))
-        return UIGraphicsGetImageFromCurrentImageContext()
+        self.draw(in: CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height))
+        return UIGraphicsGetImageFromCurrentImageContext()!
     }
     
     var fixOrientation: UIImage {
-        if self.imageOrientation == .Up {
+        if self.imageOrientation == .up {
             return self
         }
         
-        var transform: CGAffineTransform = CGAffineTransformIdentity
+        var transform: CGAffineTransform = CGAffineTransform.identity
         
         switch (self.imageOrientation) {
-        case .Down:
-            transform = CGAffineTransformTranslate(transform, self.size.width, self.size.width)
-            transform = CGAffineTransformRotate(transform, CGFloat(M_PI))
+        case .down:
+            transform = transform.translateBy(x: self.size.width, y: self.size.width)
+            transform = transform.rotate(CGFloat(M_PI))
             break
-        case .DownMirrored:
-            transform = CGAffineTransformTranslate(transform, self.size.width, self.size.width)
-            transform = CGAffineTransformRotate(transform, CGFloat(M_PI))
+        case .downMirrored:
+            transform = transform.translateBy(x: self.size.width, y: self.size.width)
+            transform = transform.rotate(CGFloat(M_PI))
             break
-        case .Left:
-            transform = CGAffineTransformTranslate(transform, self.size.width, 0)
-            transform = CGAffineTransformRotate(transform, CGFloat(M_PI_2))
+        case .left:
+            transform = transform.translateBy(x: self.size.width, y: 0)
+            transform = transform.rotate(CGFloat(M_PI_2))
             break
-        case .LeftMirrored:
-            transform = CGAffineTransformTranslate(transform, self.size.width, 0)
-            transform = CGAffineTransformRotate(transform, CGFloat(M_PI_2))
+        case .leftMirrored:
+            transform = transform.translateBy(x: self.size.width, y: 0)
+            transform = transform.rotate(CGFloat(M_PI_2))
             break
-        case .Right:
-            transform = CGAffineTransformTranslate(transform, 0, self.size.height)
-            transform = CGAffineTransformRotate(transform, CGFloat(-M_PI_2))
+        case .right:
+            transform = transform.translateBy(x: 0, y: self.size.height)
+            transform = transform.rotate(CGFloat(-M_PI_2))
             break
-        case .RightMirrored:
-            transform = CGAffineTransformTranslate(transform, 0, self.size.height)
-            transform = CGAffineTransformRotate(transform, CGFloat(-M_PI_2))
+        case .rightMirrored:
+            transform = transform.translateBy(x: 0, y: self.size.height)
+            transform = transform.rotate(CGFloat(-M_PI_2))
             break
-        case .Up:
+        case .up:
             break
-        case .UpMirrored:
+        case .upMirrored:
             break
         }
         
         switch (self.imageOrientation) {
             
-        case .UpMirrored:
-            transform = CGAffineTransformTranslate(transform, self.size.width, 0)
-            transform = CGAffineTransformScale(transform, -1, 1)
+        case .upMirrored:
+            transform = transform.translateBy(x: self.size.width, y: 0)
+            transform = transform.scaleBy(x: -1, y: 1)
             break;
-        case .DownMirrored:
-            transform = CGAffineTransformTranslate(transform, self.size.width, 0)
-            transform = CGAffineTransformScale(transform, -1, 1)
+        case .downMirrored:
+            transform = transform.translateBy(x: self.size.width, y: 0)
+            transform = transform.scaleBy(x: -1, y: 1)
             break;
-        case .LeftMirrored:
-            transform = CGAffineTransformTranslate(transform, self.size.height, 0)
-            transform = CGAffineTransformScale(transform, -1, 1)
+        case .leftMirrored:
+            transform = transform.translateBy(x: self.size.height, y: 0)
+            transform = transform.scaleBy(x: -1, y: 1)
             break
-        case .RightMirrored:
-            transform = CGAffineTransformTranslate(transform, self.size.height, 0)
-            transform = CGAffineTransformScale(transform, -1, 1)
+        case .rightMirrored:
+            transform = transform.translateBy(x: self.size.height, y: 0)
+            transform = transform.scaleBy(x: -1, y: 1)
             break
-        case .Up:
+        case .up:
             break
-        case .Right:
+        case .right:
             break
-        case .Down:
+        case .down:
             break
-        case .Left:
+        case .left:
             break
         }
         
-        let context = CGBitmapContextCreate(nil, Int(self.size.width), Int(self.size.height), CGImageGetBitsPerComponent(self.CGImage), 0, CGImageGetColorSpace(self.CGImage), CGImageGetBitmapInfo(self.CGImage).rawValue)
-        CGContextConcatCTM(context, transform)
-        
-        switch (self.imageOrientation) {
-        case .Left:
-            CGContextDrawImage(context, CGRectMake(0, 0, self.size.height, self.size.width), self.CGImage)
-            break
-        case .LeftMirrored:
-            CGContextDrawImage(context, CGRectMake(0, 0, self.size.height, self.size.width), self.CGImage)
-            break
-        case .Right:
-            CGContextDrawImage(context, CGRectMake(0, 0, self.size.height, self.size.width), self.CGImage)
-            break
-        case .RightMirrored:
-            CGContextDrawImage(context, CGRectMake(0, 0, self.size.height, self.size.width), self.CGImage)
-            break
-        default:
-            CGContextDrawImage(context, CGRectMake(0, 0, self.size.width, self.size.height), self.CGImage)
-            break
+        if let context = CGContext(data: nil, width: Int(self.size.width), height: Int(self.size.height), bitsPerComponent: (self.cgImage?.bitsPerComponent)!, bytesPerRow: 0, space: (self.cgImage?.colorSpace!)!, bitmapInfo: (self.cgImage?.bitmapInfo.rawValue)!) {
+            context.concatCTM(transform)
+            
+            switch (self.imageOrientation) {
+            case .left:
+                context.draw(in: CGRect(x: 0, y: 0, width: self.size.height, height: self.size.width), image: self.cgImage!)
+                break
+            case .leftMirrored:
+                context.draw(in: CGRect(x: 0, y: 0, width: self.size.height, height: self.size.width), image: self.cgImage!)
+                break
+            case .right:
+                context.draw(in: CGRect(x: 0, y: 0, width: self.size.height, height: self.size.width), image: self.cgImage!)
+                break
+            case .rightMirrored:
+                context.draw(in: CGRect(x: 0, y: 0, width: self.size.height, height: self.size.width), image: self.cgImage!)
+                break
+            default:
+                context.draw(in: CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height), image: self.cgImage!)
+                break
+            }
+            
+            if let cgImage = context.makeImage() {
+                return UIImage.init(cgImage: cgImage)
+            } else {
+                return self
+            }
+        } else {
+            return self
         }
-        
-        let cgImage = CGBitmapContextCreateImage(context)
-        let uiImage = UIImage.init(CGImage: cgImage!)
-        
-        return uiImage
     }
 }

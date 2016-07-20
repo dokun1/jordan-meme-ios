@@ -35,7 +35,7 @@
 		50E2672B1C7248A10075306C /* glassesFace.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50E2672A1C7248A10075306C /* glassesFace.jpg */; };
 		50E2672D1C7248DE0075306C /* noFaces.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50E2672C1C7248DE0075306C /* noFaces.jpg */; };
 		633478F21C7B3BF4004F11C1 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633478F11C7B3BF4004F11C1 /* Analytics.swift */; };
-		8E2505074C6ECA865CCF0E77 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41EEAA9708D97A41BCCE00CD /* Pods.framework */; };
+		8137F1EFF03DB2BCFA7D3681 /* Pods_JordanHeadMeme.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5832CE05F6D02E3A7854421 /* Pods_JordanHeadMeme.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,9 +78,10 @@
 		50E267271C70BD7B0075306C /* rightFacingFace.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = rightFacingFace.jpg; sourceTree = "<group>"; };
 		50E2672A1C7248A10075306C /* glassesFace.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = glassesFace.jpg; sourceTree = "<group>"; };
 		50E2672C1C7248DE0075306C /* noFaces.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = noFaces.jpg; sourceTree = "<group>"; };
-		62FF1E4695868853A6137486 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		589A17E0AA4A853C6B3DEFF2 /* Pods-JordanHeadMeme.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JordanHeadMeme.release.xcconfig"; path = "Pods/Target Support Files/Pods-JordanHeadMeme/Pods-JordanHeadMeme.release.xcconfig"; sourceTree = "<group>"; };
 		633478F11C7B3BF4004F11C1 /* Analytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
-		BBEF34FFE6AFCDDFD3409F74 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		809679A4ECCFC05D64444E8C /* Pods-JordanHeadMeme.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JordanHeadMeme.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JordanHeadMeme/Pods-JordanHeadMeme.debug.xcconfig"; sourceTree = "<group>"; };
+		A5832CE05F6D02E3A7854421 /* Pods_JordanHeadMeme.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JordanHeadMeme.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,7 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8E2505074C6ECA865CCF0E77 /* Pods.framework in Frameworks */,
+				8137F1EFF03DB2BCFA7D3681 /* Pods_JordanHeadMeme.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,15 +103,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4743B973631D85A3D9073688 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				BBEF34FFE6AFCDDFD3409F74 /* Pods.debug.xcconfig */,
-				62FF1E4695868853A6137486 /* Pods.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		501844B61C7360080079561E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -152,14 +144,23 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		507071987720C8F29561258A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				809679A4ECCFC05D64444E8C /* Pods-JordanHeadMeme.debug.xcconfig */,
+				589A17E0AA4A853C6B3DEFF2 /* Pods-JordanHeadMeme.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		507C6FF91C24A4C900B8D890 = {
 			isa = PBXGroup;
 			children = (
 				507C70041C24A4C900B8D890 /* JordanHeadMeme */,
 				507C70191C24A4C900B8D890 /* JordanHeadMemeTests */,
 				507C70031C24A4C900B8D890 /* Products */,
-				4743B973631D85A3D9073688 /* Pods */,
 				ED932200BE5A2CBB281C42EC /* Frameworks */,
+				507071987720C8F29561258A /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -216,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				41EEAA9708D97A41BCCE00CD /* Pods.framework */,
+				A5832CE05F6D02E3A7854421 /* Pods_JordanHeadMeme.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -227,13 +229,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 507C702A1C24A4C900B8D890 /* Build configuration list for PBXNativeTarget "JordanHeadMeme" */;
 			buildPhases = (
-				04931526BA050A73E47CDF71 /* Check Pods Manifest.lock */,
+				2A199604CA9D4BC6DE92BBBF /* 📦 Check Pods Manifest.lock */,
 				507C6FFE1C24A4C900B8D890 /* Sources */,
 				507C6FFF1C24A4C900B8D890 /* Frameworks */,
 				507C70001C24A4C900B8D890 /* Resources */,
-				7338913C2891829EA4C9DBF2 /* Embed Pods Frameworks */,
-				A8BEF0EC772A0D10DB9F5836 /* Copy Pods Resources */,
 				505E05D91C73956D00917E84 /* ShellScript */,
+				349955970DB89323B0113F2C /* 📦 Embed Pods Frameworks */,
+				660DB8CAB83A6F22C4618FD6 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -275,9 +277,12 @@
 					507C70011C24A4C900B8D890 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = RQ632LL2X3;
+						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
 					};
 					507C70151C24A4C900B8D890 = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0800;
 						TestTargetID = 507C70011C24A4C900B8D890;
 					};
 				};
@@ -334,19 +339,34 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		04931526BA050A73E47CDF71 /* Check Pods Manifest.lock */ = {
+		2A199604CA9D4BC6DE92BBBF /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		349955970DB89323B0113F2C /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JordanHeadMeme/Pods-JordanHeadMeme-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		505E05D91C73956D00917E84 /* ShellScript */ = {
@@ -362,34 +382,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\" 2562e5594f3c583624c29c6db146c9e585d7d2f2 bdb84a1487ff7e6b043dfe0c95f1349b224067a46e178a036f75d46878f27fee";
 		};
-		7338913C2891829EA4C9DBF2 /* Embed Pods Frameworks */ = {
+		660DB8CAB83A6F22C4618FD6 /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "📦 Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A8BEF0EC772A0D10DB9F5836 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JordanHeadMeme/Pods-JordanHeadMeme-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -537,33 +542,37 @@
 		};
 		507C702B1C24A4C900B8D890 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BBEF34FFE6AFCDDFD3409F74 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 809679A4ECCFC05D64444E8C /* Pods-JordanHeadMeme.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: David Okun (RQ632LL2X3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				INFOPLIST_FILE = JordanHeadMeme/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.okun.JordanHeadMeme;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "601ae08d-4bf4-4852-ae53-0fb57a224b7f";
+				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		507C702C1C24A4C900B8D890 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 62FF1E4695868853A6137486 /* Pods.release.xcconfig */;
+			baseConfigurationReference = 589A17E0AA4A853C6B3DEFF2 /* Pods-JordanHeadMeme.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: David Okun (RQ632LL2X3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				INFOPLIST_FILE = JordanHeadMeme/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.okun.JordanHeadMeme;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "601ae08d-4bf4-4852-ae53-0fb57a224b7f";
+				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -575,6 +584,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.okun.JordanHeadMemeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JordanHeadMeme.app/JordanHeadMeme";
 			};
 			name = Debug;
@@ -587,6 +597,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.okun.JordanHeadMemeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JordanHeadMeme.app/JordanHeadMeme";
 			};
 			name = Release;

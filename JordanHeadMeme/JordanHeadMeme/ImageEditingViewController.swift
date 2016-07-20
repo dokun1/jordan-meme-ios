@@ -8,12 +8,12 @@
 
 import UIKit
 import QuartzCore
-import SVProgressHUD
+// import SVProgressHUD
 import Crashlytics
 
 protocol ImageEditingViewControllerDelegate: class {
-    func controllerDidFinishWithImage(controller: ImageEditingViewController, image: UIImage)
-    func controllerDidCancel(controller: ImageEditingViewController)
+    func controllerDidFinishWithImage(_ controller: ImageEditingViewController, image: UIImage)
+    func controllerDidCancel(_ controller: ImageEditingViewController)
 }
 
 class ImageEditingViewController: UIViewController, UIGestureRecognizerDelegate, UIScrollViewDelegate {
@@ -39,7 +39,7 @@ class ImageEditingViewController: UIViewController, UIGestureRecognizerDelegate,
         loadImage()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         if hasMadeImage == false {
             arrangeJordanHeads()
             hasMadeImage = true
@@ -48,11 +48,11 @@ class ImageEditingViewController: UIViewController, UIGestureRecognizerDelegate,
     
     // MARK: UIScrollViewDelegate Methods
     
-    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return imageView
     }
     
-    func scrollViewDidZoom(scrollView: UIScrollView) {
+    func scrollViewDidZoom(_ scrollView: UIScrollView) {
         centerScrollViewContents()
     }
     
@@ -78,14 +78,14 @@ class ImageEditingViewController: UIViewController, UIGestureRecognizerDelegate,
     // MARK: Image processing methods
     
     func loadImage() {
-        SVProgressHUD.showWithStatus("Applying heads...")
+//        SVProgressHUD.show(withStatus: "Applying heads...")
         correctedImage = uneditedImage.fixOrientation
         imageView = UIImageView.init(image: correctedImage)
-        imageView.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))
-        imageView.frame = CGRectMake(0, 0, correctedImage.size.width, correctedImage.size.height)
+        imageView.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height)
+        imageView.frame = CGRect(x: 0, y: 0, width: correctedImage.size.width, height: correctedImage.size.height)
         imageView.center = self.view.center
-        imageView.userInteractionEnabled = true
-        imageView.contentMode = .ScaleAspectFit
+        imageView.isUserInteractionEnabled = true
+        imageView.contentMode = .scaleAspectFit
     }
     
     func arrangeJordanHeads() {
@@ -99,26 +99,26 @@ class ImageEditingViewController: UIViewController, UIGestureRecognizerDelegate,
             headViews.append(headView)
             generatedHeads.append(head)
         }
-        let resizeFactor = UIScreen.mainScreen().bounds.size.width / imageView.frame.size.width
-        imageView.transform = CGAffineTransformMakeScale(resizeFactor, resizeFactor)
+        let resizeFactor = UIScreen.main().bounds.size.width / imageView.frame.size.width
+        imageView.transform = CGAffineTransform(scaleX: resizeFactor, y: resizeFactor)
         scrollView.minimumZoomScale = resizeFactor
         imageView.center = scrollView.center
         if results?.count == 0 {
-            SVProgressHUD.showErrorWithStatus("Could not find any faces")
+            // SVProgressHUD.showError(withStatus: "Could not find any faces")
         } else {
-            SVProgressHUD.dismiss()
+            // SVProgressHUD.dismiss()
         }
         scrollView.addSubview(imageView)
-        scrollView.sendSubviewToBack(imageView)
-        self.view.sendSubviewToBack(scrollView)
+        scrollView.sendSubview(toBack: imageView)
+        self.view.sendSubview(toBack: scrollView)
         addEntirePhotoGestureRecognizers()
     }
     
-    func getImageViewForHead(head: JordanHead) -> JordanHeadImageView {
+    func getImageViewForHead(_ head: JordanHead) -> JordanHeadImageView {
         let jordanHeadImage = JordanHeadImageView.init(head: head)
         jordanHeadImage.frame = head.rect
-        jordanHeadImage.contentMode = .ScaleAspectFit
-        jordanHeadImage.backgroundColor = UIColor.clearColor()
+        jordanHeadImage.contentMode = .scaleAspectFit
+        jordanHeadImage.backgroundColor = UIColor.clear()
         if head.faceFeature.hasRightEyePosition && head.faceFeature.hasLeftEyePosition {
             if head.faceFeature.rightEyePosition.y > head.faceFeature.leftEyePosition.y {
                 jordanHeadImage.image = UIImage.init(named: "jordanHeadInverted.png")
@@ -127,14 +127,14 @@ class ImageEditingViewController: UIViewController, UIGestureRecognizerDelegate,
                 head.facingRight = true
             }
         }
-        jordanHeadImage.transform = CGAffineTransformMakeRotation(CGFloat(head.faceFeature.faceAngle * Float(M_PI/180)))
-        jordanHeadImage.userInteractionEnabled = true
+        jordanHeadImage.transform = CGAffineTransform(rotationAngle: CGFloat(head.faceFeature.faceAngle * Float(M_PI/180)))
+        jordanHeadImage.isUserInteractionEnabled = true
         return jordanHeadImage
     }
     
     // MARK: UI Drawing Methods
     
-    func addNewHead(rect: CGRect) {
+    func addNewHead(_ rect: CGRect) {
         setAllButtonsEnabled(false)
         var highestID = 0
         for head in generatedHeads {
@@ -154,10 +154,10 @@ class ImageEditingViewController: UIViewController, UIGestureRecognizerDelegate,
         setAllButtonsEnabled(true)
     }
     
-    func makeHeadDisappear(head: JordanHeadImageView) {
+    func makeHeadDisappear(_ head: JordanHeadImageView) {
         if removingHead == false {
             removingHead = true
-            UIView.animateWithDuration(0.3, animations: {
+            UIView.animate(withDuration: 0.3, animations: {
                 head.alpha = 0
                 }, completion: {
                     (value: Bool) in
@@ -167,28 +167,28 @@ class ImageEditingViewController: UIViewController, UIGestureRecognizerDelegate,
         }
     }
     
-    func addGestureRecognizers(head: UIImageView) {
-        let panner = UIPanGestureRecognizer.init(target: self, action: Selector("panGestureActivated:"))
+    func addGestureRecognizers(_ head: UIImageView) {
+        let panner = UIPanGestureRecognizer.init(target: self, action: #selector(ImageEditingViewController.panGestureActivated(_:)))
         panner.delegate = self
         head.addGestureRecognizer(panner)
         
-        let doubleTapper = UITapGestureRecognizer.init(target: self, action: Selector("doubleTapGestureActivated:"))
+        let doubleTapper = UITapGestureRecognizer.init(target: self, action: #selector(ImageEditingViewController.doubleTapGestureActivated(_:)))
         doubleTapper.numberOfTouchesRequired = 1
         doubleTapper.numberOfTapsRequired = 2
         doubleTapper.delegate = self
         head.addGestureRecognizer(doubleTapper)
         
-        let pincher = UIPinchGestureRecognizer.init(target: self, action: Selector("pinchGestureActivated:"))
+        let pincher = UIPinchGestureRecognizer.init(target: self, action: #selector(ImageEditingViewController.pinchGestureActivated(_:)))
         pincher.delegate = self
         head.addGestureRecognizer(pincher)
         
-        let rotator = UIRotationGestureRecognizer.init(target: self, action: Selector("rotationGestureActivated:"))
+        let rotator = UIRotationGestureRecognizer.init(target: self, action: #selector(ImageEditingViewController.rotationGestureActivated(_:)))
         rotator.delegate = self
         head.addGestureRecognizer(rotator)
     }
 
     func addEntirePhotoGestureRecognizers() {
-        let doubleTapper = UITapGestureRecognizer.init(target: self, action: Selector("doubleTapGestureActivatedMainView:"))
+        let doubleTapper = UITapGestureRecognizer.init(target: self, action: #selector(ImageEditingViewController.doubleTapGestureActivatedMainView(_:)))
         doubleTapper.numberOfTouchesRequired = 1
         doubleTapper.numberOfTapsRequired = 2
         doubleTapper.delegate = self
@@ -197,64 +197,64 @@ class ImageEditingViewController: UIViewController, UIGestureRecognizerDelegate,
     
     // MARK: Gesture Recognizer Targets
     
-    func rotationGestureActivated(recognizer: UIRotationGestureRecognizer) {
+    func rotationGestureActivated(_ recognizer: UIRotationGestureRecognizer) {
         if let view = recognizer.view {
-            view.transform = CGAffineTransformRotate(view.transform, recognizer.rotation)
+            view.transform = view.transform.rotate(recognizer.rotation)
             recognizer.rotation = 0
         }
     }
     
-    func panGestureActivated(recognizer: UIPanGestureRecognizer) {
-        if (recognizer.velocityInView(imageView).y > 12000 || recognizer.velocityInView(imageView).y < -12000) && recognizer.view is JordanHeadImageView {
+    func panGestureActivated(_ recognizer: UIPanGestureRecognizer) {
+        if (recognizer.velocity(in: imageView).y > 12000 || recognizer.velocity(in: imageView).y < -12000) && recognizer.view is JordanHeadImageView {
             makeHeadDisappear(recognizer.view as! JordanHeadImageView)
         } else {
-            let translation = recognizer.translationInView(self.imageView)
+            let translation = recognizer.translation(in: self.imageView)
             if let view = recognizer.view {
-                view.center = CGPointMake(view.center.x + translation.x, view.center.y + translation.y)
+                view.center = CGPoint(x: view.center.x + translation.x, y: view.center.y + translation.y)
             }
-            recognizer.setTranslation(CGPointZero, inView: self.view)
+            recognizer.setTranslation(CGPoint.zero, in: self.view)
         }
     }
     
-    func doubleTapGestureActivated(recognizer: UITapGestureRecognizer) {
+    func doubleTapGestureActivated(_ recognizer: UITapGestureRecognizer) {
         if let imageView = recognizer.view as? UIImageView {
             let tag = imageView.tag
-            var tappedHead: JordanHead?
+            var tappedHead: JordanHead = JordanHead()
+            tappedHead.id = 0 // no active head should have a tag of 0 so this can be our acceptance criteria
             for head in generatedHeads {
                 if head.id == tag {
                     tappedHead = head
                     break
                 }
             }
-            guard (tappedHead != nil) else {
+            guard (tappedHead != 0) else {
                 return
             }
-            // wtf why isnt this working
-            if tappedHead?.facingRight == true {
+            if tappedHead.facingRight == true {
                 imageView.image = UIImage.init(named: "jordanHeadInverted.png")
-                tappedHead?.facingRight = false
+                tappedHead.facingRight = false
             } else {
                 imageView.image = UIImage.init(named: "jordanHead.png")
-                tappedHead?.facingRight = true
+                tappedHead.facingRight = true
             }
         }
     }
     
-    func pinchGestureActivated(recognizer: UIPinchGestureRecognizer) {
+    func pinchGestureActivated(_ recognizer: UIPinchGestureRecognizer) {
         if let view = recognizer.view {
-            view.transform = CGAffineTransformScale(view.transform, recognizer.scale, recognizer.scale)
+            view.transform = view.transform.scaleBy(x: recognizer.scale, y: recognizer.scale)
             recognizer.scale = 1
         }
     }
     
-    func doubleTapGestureActivatedMainView(recognizer: UITapGestureRecognizer) {
+    func doubleTapGestureActivatedMainView(_ recognizer: UITapGestureRecognizer) {
         if scrollView.zoomScale == scrollView.minimumZoomScale { // zoom in at point
             let newZoomScale = max(CGFloat(scrollView.zoomScale * 3), 3)
             
-            let percentX = recognizer.locationInView(scrollView).x / scrollView.frame.size.width
-            let percentY = recognizer.locationInView(scrollView).y / scrollView.frame.size.height
+            let percentX = recognizer.location(in: scrollView).x / scrollView.frame.size.width
+            let percentY = recognizer.location(in: scrollView).y / scrollView.frame.size.height
             
-            let translatedPoint = CGPointMake(correctedImage.size.width * percentX, correctedImage.size.height * percentY)
+            let translatedPoint = CGPoint(x: correctedImage.size.width * percentX, y: correctedImage.size.height * percentY)
             
             let size = correctedImage.size
             let w = size.width / newZoomScale
@@ -262,8 +262,8 @@ class ImageEditingViewController: UIViewController, UIGestureRecognizerDelegate,
             let x = translatedPoint.x - (w / 2)
             let y = translatedPoint.y - (h / 2)
             
-            let rectToZoomTo = CGRectMake(x, y, w, h)
-            scrollView.zoomToRect(rectToZoomTo, animated: true)
+            let rectToZoomTo = CGRect(x: x, y: y, width: w, height: h)
+            scrollView.zoom(to: rectToZoomTo, animated: true)
         } else {
             scrollView.setZoomScale(scrollView.minimumZoomScale, animated: true)
         }
@@ -271,8 +271,9 @@ class ImageEditingViewController: UIViewController, UIGestureRecognizerDelegate,
     
     // MARK: UIGestureRecognizerDelegate Methods
     
-    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        if gestureRecognizer.view is JordanHeadImageView && otherGestureRecognizer.view is JordanHeadImageView { // we dont want both the scroll view and the jordan head to zoom simultaneously
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        if gestureRecognizer.view is JordanHeadImageView && otherGestureRecognizer.view is JordanHeadImageView {
+            // we dont want both the scroll view and the jordan head to zoom simultaneously
             return true
         } else {
             return false
@@ -281,11 +282,11 @@ class ImageEditingViewController: UIViewController, UIGestureRecognizerDelegate,
     
     // MARK: IBActions
     
-    func setAllButtonsEnabled(enabled: Bool) {
-        shareButton.enabled = enabled
-        saveButton.enabled = enabled
-        addButton.enabled = enabled
-        doneButton.enabled = enabled
+    func setAllButtonsEnabled(_ enabled: Bool) {
+        shareButton.isEnabled = enabled
+        saveButton.isEnabled = enabled
+        addButton.isEnabled = enabled
+        doneButton.isEnabled = enabled
     }
     
     @IBAction func doneButtonClicked() {
@@ -296,38 +297,46 @@ class ImageEditingViewController: UIViewController, UIGestureRecognizerDelegate,
     @IBAction func saveButtonTapped() {
         Analytics.logCustomEventWithName("Photo Saved", customAttributes: nil)
         setAllButtonsEnabled(false)
-        SVProgressHUD.showWithStatus("Saving image...")
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) { () -> Void in
-            let newImage = self.imageView.convertToImage(self.correctedImage.size)
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                UIImageWriteToSavedPhotosAlbum(newImage, nil, nil, nil)
-                SVProgressHUD.dismiss()
-                self.setAllButtonsEnabled(true)
-            })
+        // SVProgressHUD.show(withStatus: "Saving image...")
+        DispatchQueue.global(attributes: DispatchQueue.GlobalAttributes.qosUserInitiated).async {
+            if let newImage = self.imageView.convertToImage(self.correctedImage.size) { // this can be refactored
+                DispatchQueue.main.async {
+                    UIImageWriteToSavedPhotosAlbum(newImage, nil, nil, nil)
+                    // notify the user that saving is done
+                    self.setAllButtonsEnabled(true)
+                }
+            } else {
+                DispatchQueue.main.async {
+                    // notify the user of an error with an SVProgressHUD in the future
+                    self.setAllButtonsEnabled(true)
+                }
+            }
         }
     }
     
     @IBAction func shareButtonTapped() {
         Analytics.logCustomEventWithName("Share Button Tapped", customAttributes: nil)
         setAllButtonsEnabled(false)
-        SVProgressHUD.showWithStatus("Preparing image...")
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) { () -> Void in
-            let activityViewController = UIActivityViewController(activityItems: [self.imageView.convertToImage(self.correctedImage.size)], applicationActivities: nil)
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                SVProgressHUD.dismiss()
+        // SVProgressHUD.show(withStatus: "Preparing image...")
+        DispatchQueue.global(attributes: DispatchQueue.GlobalAttributes.qosUserInteractive).async {
+            let activityViewController = UIActivityViewController(activityItems: [self.imageView.convertToImage(self.correctedImage.size)!], applicationActivities: nil)
+            DispatchQueue.main.async {
+                // SVProgressHUD.dismiss()
                 if let popover = activityViewController.popoverPresentationController {
                     popover.sourceView = self.shareButton
                 }
                 activityViewController.completionWithItemsHandler = {(activityType: String?, completed: Bool, returnedItems: [AnyObject]?, error: NSError?) in
+                    if activityType != nil {
                         Analytics.logCustomEventWithName("Photo Shared", customAttributes: ["ShareType":activityType!, "Completed":completed])
+                    }
                 }
-                self.presentViewController(activityViewController, animated: true, completion: nil)
+                self.present(activityViewController, animated: true, completion: nil)
                 self.setAllButtonsEnabled(true)
-            })
+            }
         }
     }
     
     @IBAction func addButtonTapped() {
-        addNewHead(CGRectMake(10, 10, correctedImage.size.width / 5, correctedImage.size.height / 5))
+        addNewHead(CGRect(x: 10, y: 10, width: correctedImage.size.width / 5, height: correctedImage.size.height / 5))
     }
 }

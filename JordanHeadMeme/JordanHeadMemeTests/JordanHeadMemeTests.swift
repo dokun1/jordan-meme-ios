@@ -21,8 +21,8 @@ class JordanHeadMemeTests: XCTestCase {
         super.tearDown()
     }
     
-    func getAppliedFaces(filename: String) -> [JordanHead]? {
-        let bundle = NSBundle(forClass: self.dynamicType)
+    func getAppliedFaces(_ filename: String) -> [JordanHead]? {
+        let bundle = Bundle(for: self.dynamicType)
         let path = bundle.pathForResource(filename, ofType: "jpg")
         if path == nil {
             return nil

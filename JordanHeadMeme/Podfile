@@ -1,6 +1,10 @@
+project 'JordanHeadMeme.xcodeproj'
+
 platform :ios, '8.0'
-pod 'SVProgressHUD', '~> 1.1'
-pod 'Fabric'
-pod 'Crashlytics'
-pod 'TSMessages', :git => 'https://github.com/KrauseFx/TSMessages.git'
-use_frameworks!
+target 'JordanHeadMeme' do
+  use_frameworks!
+#  pod 'SVProgressHUD' until the beta can handle it, cant do nothing
+  pod 'Fabric'
+  pod 'Crashlytics'
+#  pod 'TSMessages', :git => 'https://github.com/KrauseFx/TSMessages.git' until the beta can handle it, cant do nothing
+end

@@ -13,52 +13,56 @@ import Crashlytics
 class InfoViewController: UIViewController {
     @IBOutlet weak var versionLabel: UILabel!
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if let version = NSBundle.mainBundle().infoDictionary?["CFBundleShortVersionString"] as? String {
-            if let build = NSBundle.mainBundle().infoDictionary?["CFBundleVersion"] as? String {
-                let debug = UIApplication.sharedApplication().isDebugMode ? "DEBUG" : ""
+        if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+            if let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String {
+                let debug = UIApplication.shared().isDebugMode ? "DEBUG" : ""
                 versionLabel.text = "© David Okun, 2016, v\(version)-\(build)\(debug)"
             }
         }
     }
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         Analytics.logCustomEventWithName("Info View Shown", customAttributes:nil)
     }
 
+    // MARK: IBAction functions
+    
     @IBAction func githubIconTapped() {
         Analytics.logCustomEventWithName("Social Link Tapped", customAttributes:["Site Loaded":"Github"])
-        let url = NSURL.init(string: "https://www.github.com/dokun1/jordan-meme-ios")
-        UIApplication.sharedApplication().openURL(url!)
+        open(urlString: "https://www.github.com/dokun1/jordan-meme-ios")
     }
     
     @IBAction func twitterIconTapped() {
         Analytics.logCustomEventWithName("Social Link Tapped", customAttributes:["Site Loaded":"Twitter"])
-        let url = NSURL.init(string: "https://www.twitter.com/dokun24")
-        UIApplication.sharedApplication().openURL(url!)
+        open(urlString: "https://www.twitter.com/dokun24")
     }
     
     @IBAction func instagramIconTapped() {
         Analytics.logCustomEventWithName("Social Link Tapped", customAttributes:["Site Loaded":"Instagram"])
-        let url = NSURL.init(string: "https://www.instagram.com/dokun1")
-        UIApplication.sharedApplication().openURL(url!)
+        open(urlString: "https://www.instagram.com/dokun1")
     }
     
     @IBAction func internetIconTapped() {
         Analytics.logCustomEventWithName("Social Link Tapped", customAttributes:["Site Loaded":"Website"])
-        let url = NSURL.init(string: "http://okun.io")
-        UIApplication.sharedApplication().openURL(url!)
+        open(urlString: "http://okun.io")
     }
     
     @IBAction func reviewButtonTapped() {
         Analytics.logCustomEventWithName("Social Link Tapped", customAttributes:["Site Loaded":"Review"])
-        let url = NSURL.init(string: "itms-apps://itunes.apple.com/app/id1084796562")
-        UIApplication.sharedApplication().openURL(url!)
+        open(urlString: "itms-apps://itunes.apple.com/app/id1084796562")
     }
     
     @IBAction func goBackButtonTapped() {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
+    // MARK: URL Handler
+    
+    func open(urlString: String) {
+        if let url = URL(string: urlString) {
+            UIApplication.shared().openURL(url)
+        }
+    }
 }

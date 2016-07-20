@@ -12,12 +12,12 @@ import Fabric
 import Crashlytics
 
 class Analytics: NSObject {
-    class func logCustomEventWithName(eventName: String!, customAttributes: Dictionary <String, AnyObject>!) {
-        if UIApplication.sharedApplication().isDebugMode {
+    class func logCustomEventWithName(_ eventName: String!, customAttributes: Dictionary <String, AnyObject>!) {
+        if UIApplication.shared().isDebugMode {
             print("EVENT LOGGED: \(eventName) WITH ATTRIBUTES: \(customAttributes)")
             return
         } else {
-            Answers.logCustomEventWithName(eventName, customAttributes: customAttributes)
+            Answers.logCustomEvent(withName: eventName, customAttributes: customAttributes)
         }
     }
 }
