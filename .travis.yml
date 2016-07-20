@@ -8,6 +8,6 @@ podfile: JordanHeadMeme/Podfile
 before_install:
   - rvm install current
   - rvm use current
-  - gem install cocoapods -v '0.39.0'
+  - gem install cocoapods -v '1.0.1'
 script:
   - xctool clean test -scheme JordanHeadMemeDebug -workspace JordanHeadMeme/JordanHeadMeme.xcworkspace -sdk iphonesimulator9.2 -reporter pretty -destination "platform=iOS Simulator,name=iPhone 6,OS=9.2"
